@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1017448414369",
+    "project_id": "uponorflix",
+    "storage_bucket": "uponorflix.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017448414369:android:cbbcd5f6718c631ea244e0",
+        "android_client_info": {
+          "package_name": "com.example.uponorflix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpdFugcyMVoMOyjbca3jNzBHwGywtMpzM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
