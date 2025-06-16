@@ -35,7 +35,14 @@ class _HomeScreenState extends State<HomeScreen> {
               MovieList(
                 movies: movies,
                 onEdit: (movie) async {
-                  // TODO go edit movie
+                  final updatedMovie = await Navigator.of(context).push<Movie>(
+                    MaterialPageRoute(
+                      builder: (_) => MovieFormScreen(movie: movie),
+                    ),
+                  );
+                  if (updatedMovie != null) {
+                    await _firestoreService.updateMovie(updatedMovie);
+                  }
                 },
                 onDelete: (movie) => _firestoreService.deleteMovie(movie.id),
                 onTap: (movie) {

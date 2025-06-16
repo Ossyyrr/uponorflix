@@ -18,16 +18,29 @@ class MovieList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate((context, index) {
-        final movie = movies[index];
-        return MovieListTile(
-          movie: movie,
-          onEdit: () => onEdit(movie),
-          onDelete: () => onDelete(movie),
-          onTap: () => onTap(movie),
-        );
-      }, childCount: movies.length),
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+    final crossAxisCount = isLandscape ? 2 : 1;
+
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      sliver: SliverGrid(
+        delegate: SliverChildBuilderDelegate((context, index) {
+          final movie = movies[index];
+          return MovieListTile(
+            movie: movie,
+            onEdit: () => onEdit(movie),
+            onDelete: () => onDelete(movie),
+            onTap: () => onTap(movie),
+          );
+        }, childCount: movies.length),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+          childAspectRatio: 1.7,
+        ),
+      ),
     );
   }
 }

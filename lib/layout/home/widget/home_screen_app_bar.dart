@@ -47,8 +47,8 @@ class HomeScreenAppBar extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Colors.black.withOpacity(0.6),
-                    Theme.of(context).colorScheme.primary.withOpacity(0.4),
+                    Colors.black.withAlpha(60),
+                    Theme.of(context).colorScheme.primary.withAlpha(130),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,

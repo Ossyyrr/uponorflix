@@ -21,7 +21,8 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
   void _addTestMovie() {
     final movie = Movie(
       title: 'Nueva Película',
-      description: 'Descripción de ejemplo',
+      description:
+          'Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo',
       imageUrl:
           'https://ih1.redbubble.net/image.4598241582.6557/st,small,507x507-pad,600x600,f8f8f8.jpg',
     );
