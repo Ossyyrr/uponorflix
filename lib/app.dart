@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uponorflix/data/service/firestore_service.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/layout/home/home_screen.dart';
 import 'package:uponorflix/layout/settings/bloc/language_bloc.dart';
@@ -10,12 +11,14 @@ import 'package:uponorflix/layout/widget/top_bloc_provider.dart';
 
 class App extends StatelessWidget {
   final SharedPreferences prefs;
-  const App({super.key, required this.prefs});
+  final FirestoreService firestoreService;
+  const App({super.key, required this.prefs, required this.firestoreService});
 
   @override
   Widget build(BuildContext context) {
     return TopBlocProvider(
       prefs: prefs,
+      firestoreService: firestoreService,
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, themeState) {
           return BlocBuilder<LanguageBloc, Locale>(
