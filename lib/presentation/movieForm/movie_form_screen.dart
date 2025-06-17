@@ -76,13 +76,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
     _trailerUrlController = TextEditingController(
       text: widget.movie?.trailerUrl ?? '',
     );
-    _selectedCategory =
-        widget.movie != null && widget.movie!.category.isNotEmpty
-        ? MovieCategory.values.firstWhere(
-            (e) => e.name == widget.movie!.category,
-            orElse: () => MovieCategory.action,
-          )
-        : null;
+    _selectedCategory = movieCategoryFromString(widget.movie?.category);
     _selectedType = widget.movie?.type ?? MovieType.movie;
   }
 

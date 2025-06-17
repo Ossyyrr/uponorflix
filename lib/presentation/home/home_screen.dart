@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uponorflix/domain/model/movie.dart';
-import 'package:uponorflix/presentation/detail/detail_screen.dart';
 import 'package:uponorflix/presentation/home/bloc/home_bloc.dart';
+import 'package:uponorflix/presentation/home/widget/add_movie_button.dart';
 import 'package:uponorflix/presentation/home/widget/home_screen_app_bar.dart';
 import 'package:uponorflix/presentation/home/widget/movie_list.dart';
-import 'package:uponorflix/presentation/movieForm/movie_form_screen.dart';
 import 'package:uponorflix/presentation/utils/enum/screen_status.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -28,52 +26,14 @@ class HomeScreen extends StatelessWidget {
               return CustomScrollView(
                 slivers: [
                   HomeScreenAppBar(title: title),
-                  MovieList(
-                    movies: state.movies,
-                    onEdit: (movie) async {
-                      final updatedMovie = await Navigator.of(context)
-                          .push<Movie>(
-                            MaterialPageRoute(
-                              builder: (_) => MovieFormScreen(movie: movie),
-                            ),
-                          );
-                      if (updatedMovie != null) {
-                        context.read<MovieBloc>().add(
-                          UpdateMovie(updatedMovie),
-                        );
-                      }
-                    },
-                    onDelete: (movie) {
-                      context.read<MovieBloc>().add(DeleteMovie(movie.id));
-                    },
-                    onTap: (movie) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => DetailScreen(movie: movie),
-                        ),
-                      );
-                    },
-                  ),
+                  MovieList(movies: state.movies, title: title),
                 ],
               );
             },
           );
         },
       ),
-      floatingActionButton: Builder(
-        builder: (context) => FloatingActionButton(
-          onPressed: () async {
-            final movie = await Navigator.of(context).push<Movie>(
-              MaterialPageRoute(builder: (_) => const MovieFormScreen()),
-            );
-            if (movie != null) {
-              context.read<MovieBloc>().add(AddMovie(movie));
-            }
-          },
-          tooltip: 'Agregar película',
-          child: const Icon(Icons.add),
-        ),
-      ),
+      floatingActionButton: AddMovieButton(),
     );
   }
 }
