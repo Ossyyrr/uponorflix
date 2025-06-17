@@ -29,7 +29,7 @@ class AppTheme {
 
   static ThemeData darkTheme() {
     final colorScheme = ColorScheme.dark(
-      primary: Colors.pink.shade400,
+      primary: const Color(0xFFEC407A),
       secondary: Color(0xFF80CBC4),
       tertiary: Color(0xFF9575CD),
       onPrimary: Colors.black,

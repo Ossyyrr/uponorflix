@@ -24,8 +24,6 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
       title: 'Nueva Película',
       description:
           'Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo',
-      imageUrl:
-          'https://ih1.redbubble.net/image.4598241582.6557/st,small,507x507-pad,600x600,f8f8f8.jpg',
       trailerUrl:
           'https://www.youtube.com/watch?v=Ns6ZEpQ1xS0&ab_channel=UniversalSpain',
     );
@@ -63,7 +61,6 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
         id: widget.movie?.id ?? '',
         title: _titleController.text,
         description: _descriptionController.text,
-        imageUrl: _imageUrlController.text,
         trailerUrl: _trailerUrlController.text,
       );
       Navigator.of(context).pop(movie);
@@ -97,14 +94,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                     ? 'Ingrese una descripción'
                     : null,
               ),
-              TextFormField(
-                controller: _imageUrlController,
-                decoration: const InputDecoration(
-                  labelText: 'URL de la imagen',
-                ),
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'Ingrese una URL' : null,
-              ),
+
               TextFormField(
                 controller: _trailerUrlController,
                 decoration: const InputDecoration(
