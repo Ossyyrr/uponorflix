@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:uponorflix/data/repository/movie_repository_impl.dart';
-import 'package:uponorflix/domain/enum/movie_category.dart';
+import 'package:uponorflix/domain/enum/movie.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/presentation/utils/movie_category_localization.dart';
@@ -23,6 +23,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
   final MovieRepositoryImpl _firestoreService = MovieRepositoryImpl();
 
   MovieCategory? _selectedCategory;
+  MovieType _selectedType = MovieType.movie;
 
   void _addTestMovie() async {
     final movies = [
@@ -33,6 +34,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
         trailerUrl:
             'https://www.youtube.com/watch?v=Ns6ZEpQ1xS0&ab_channel=UniversalSpain',
         category: MovieCategory.action.name,
+        type: MovieType.movie,
       ),
       Movie(
         title: 'Interestelar',
@@ -41,6 +43,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
         trailerUrl:
             'https://www.youtube.com/watch?v=zSWdZVtXT7E&ab_channel=WarnerBros.Pictures',
         category: MovieCategory.sciFi.name,
+        type: MovieType.movie,
       ),
       Movie(
         title: 'Coco',
@@ -49,6 +52,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
         trailerUrl:
             'https://www.youtube.com/watch?v=Ga6RYejo6Hk&ab_channel=Pixar',
         category: MovieCategory.anime.name,
+        type: MovieType.movie,
       ),
     ];
 
@@ -78,6 +82,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
             orElse: () => MovieCategory.action,
           )
         : null;
+    _selectedType = widget.movie?.type ?? MovieType.movie;
   }
 
   @override
@@ -97,6 +102,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
         description: _descriptionController.text,
         trailerUrl: _trailerUrlController.text,
         category: _selectedCategory?.name ?? '',
+        type: _selectedType,
       );
       Navigator.of(context).pop(movie);
     }
@@ -150,14 +156,56 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                 validator: (value) =>
                     value == null ? 'Seleccione una categoría' : null,
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: Row(
+                  children: [
+                    Text('Tipo:', style: Theme.of(context).textTheme.bodyLarge),
+                    const SizedBox(width: 16),
+                    ChoiceChip(
+                      label: const Text('Película'),
+                      selected: _selectedType == MovieType.movie,
+                      onSelected: (selected) {
+                        if (selected) {
+                          setState(() {
+                            _selectedType = MovieType.movie;
+                          });
+                        }
+                      },
+                    ),
+                    const SizedBox(width: 8),
+                    ChoiceChip(
+                      label: const Text('Serie'),
+                      selected: _selectedType == MovieType.series,
+                      onSelected: (selected) {
+                        if (selected) {
+                          setState(() {
+                            _selectedType = MovieType.series;
+                          });
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
               TextFormField(
                 controller: _trailerUrlController,
                 decoration: const InputDecoration(
                   labelText: 'Enlace de YouTube (tráiler)',
                 ),
-                validator: (value) => value == null || value.isEmpty
-                    ? 'Ingrese un enlace de YouTube'
-                    : null,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Ingrese un enlace de YouTube';
+                  }
+                  final youtubeRegex = RegExp(
+                    r'^(https?\:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$',
+                    caseSensitive: false,
+                  );
+                  if (!youtubeRegex.hasMatch(value)) {
+                    return 'Ingrese una URL válida de YouTube';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 24),
               ElevatedButton(onPressed: _save, child: const Text('Guardar')),

@@ -1,3 +1,4 @@
+import 'package:uponorflix/domain/enum/movie.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Movie {
@@ -7,6 +8,7 @@ class Movie {
   final String trailerUrl;
   final String imageUrl;
   final String category;
+  final MovieType type;
 
   Movie({
     this.id = '',
@@ -14,6 +16,7 @@ class Movie {
     required this.description,
     required this.category,
     this.trailerUrl = '',
+    this.type = MovieType.movie,
   }) : imageUrl = _generateThumbnail(trailerUrl);
 
   static String _generateThumbnail(String trailerUrl) {
@@ -31,6 +34,7 @@ class Movie {
       description: data['description'] ?? '',
       category: data['category'] ?? '',
       trailerUrl: data['trailerUrl'] ?? '',
+      type: data['type'] == 'series' ? MovieType.series : MovieType.movie,
     );
   }
 
@@ -40,6 +44,8 @@ class Movie {
       'description': description,
       'trailerUrl': trailerUrl,
       'imageUrl': imageUrl,
+      'category': category,
+      'type': type == MovieType.series ? 'series' : 'movie',
     };
   }
 }
