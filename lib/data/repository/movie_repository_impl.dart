@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uponorflix/domain/interface/data_base_service.dart';
+import 'package:uponorflix/domain/interface/movie_repository.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 import 'package:uponorflix/domain/result.dart';
 
-class FirestoreDataBaseService implements DataBaseService {
+class MovieRepositoryImpl implements MovieRepository {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   @override

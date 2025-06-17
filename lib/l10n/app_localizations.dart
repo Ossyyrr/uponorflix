@@ -116,11 +116,11 @@ abstract class AppLocalizations {
   /// **'English'**
   String get english;
 
-  /// No description provided for @settingsScreen.
+  /// No description provided for @settings.
   ///
   /// In en, this message translates to:
   /// **'Settings'**
-  String get settingsScreen;
+  String get settings;
 
   /// No description provided for @darkMode.
   ///

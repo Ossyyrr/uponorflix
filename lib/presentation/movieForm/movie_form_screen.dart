@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:uponorflix/data/service/firestore_data_base_service.dart';
+import 'package:uponorflix/data/repository/movie_repository_impl.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 
 class MovieFormScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
   late TextEditingController _titleController;
   late TextEditingController _descriptionController;
   late TextEditingController _imageUrlController;
-  final FirestoreDataBaseService _firestoreService = FirestoreDataBaseService();
+  final MovieRepositoryImpl _firestoreService = MovieRepositoryImpl();
 
   void _addTestMovie() {
     final movie = Movie(
