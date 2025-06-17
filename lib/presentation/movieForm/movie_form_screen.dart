@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:uponorflix/data/repository/movie_repository_impl.dart';
 import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/domain/enum/movie_type.dart';
+import 'package:uponorflix/domain/interface/movie_repository.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
+import 'package:uponorflix/presentation/movieForm/util/add_test_movies.dart';
+import 'package:uponorflix/presentation/movieForm/widget/form_app_bar.dart';
+import 'package:uponorflix/presentation/movieForm/widget/form_background.dart';
 import 'package:uponorflix/presentation/utils/movie_category_localization.dart';
 
 class MovieFormScreen extends StatefulWidget {
@@ -21,47 +25,11 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
   late TextEditingController _descriptionController;
   late TextEditingController _imageUrlController;
   late TextEditingController _trailerUrlController;
-  final MovieRepositoryImpl _firestoreService = MovieRepositoryImpl();
+  final MovieRepository _firestoreService =
+      MovieRepositoryImpl(); // TODO gestionar con Bloc
 
   MovieCategory? _selectedCategory;
   MovieType _selectedType = MovieType.movie;
-
-  void _addTestMovie() async {
-    final movies = [
-      Movie(
-        title: 'Cómo entrenar a tu dragón',
-        description:
-            'Un joven vikingo se hace amigo de un dragón herido y descubre que los dragones no son lo que parecen.',
-        trailerUrl:
-            'https://www.youtube.com/watch?v=Ns6ZEpQ1xS0&ab_channel=UniversalSpain',
-        category: MovieCategory.action.name,
-        type: MovieType.movie,
-      ),
-      Movie(
-        title: 'Interestelar',
-        description:
-            'Un grupo de exploradores viaja a través de un agujero de gusano en el espacio en un intento de asegurar la supervivencia de la humanidad.',
-        trailerUrl:
-            'https://www.youtube.com/watch?v=zSWdZVtXT7E&ab_channel=WarnerBros.Pictures',
-        category: MovieCategory.sciFi.name,
-        type: MovieType.movie,
-      ),
-      Movie(
-        title: 'Coco',
-        description:
-            'Un niño mexicano se embarca en una aventura en la Tierra de los Muertos para descubrir la historia de su familia.',
-        trailerUrl:
-            'https://www.youtube.com/watch?v=Ga6RYejo6Hk&ab_channel=Pixar',
-        category: MovieCategory.anime.name,
-        type: MovieType.movie,
-      ),
-    ];
-
-    for (final movie in movies) {
-      await _firestoreService.addMovie(movie);
-    }
-    Navigator.of(context).pop();
-  }
 
   @override
   void initState() {
@@ -106,122 +74,249 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.movie == null ? 'Nueva Película' : 'Editar Película',
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                TextFormField(
-                  controller: _titleController,
-                  decoration: const InputDecoration(labelText: 'Título'),
-                  validator: (value) => value == null || value.isEmpty
-                      ? 'Ingrese un título'
-                      : null,
-                ),
-                TextFormField(
-                  controller: _descriptionController,
-                  decoration: const InputDecoration(labelText: 'Descripción'),
-                  validator: (value) => value == null || value.isEmpty
-                      ? 'Ingrese una descripción'
-                      : null,
-                ),
-                DropdownButtonFormField<MovieCategory>(
-                  value: _selectedCategory,
-                  decoration: const InputDecoration(labelText: 'Categoría'),
-                  items: MovieCategory.values
-                      .map(
-                        (cat) => DropdownMenuItem(
-                          value: cat,
-                          child: Text(getCategoryLabel(loc, cat)),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedCategory = value;
-                    });
-                  },
-                  validator: (value) =>
-                      value == null ? 'Seleccione una categoría' : null,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Tipo:',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      const SizedBox(width: 16),
-                      ChoiceChip(
-                        label: const Text('Película'),
-                        selected: _selectedType == MovieType.movie,
-                        onSelected: (selected) {
-                          if (selected) {
-                            setState(() {
-                              _selectedType = MovieType.movie;
-                            });
-                          }
-                        },
-                      ),
-                      const SizedBox(width: 8),
-                      ChoiceChip(
-                        label: const Text('Serie'),
-                        selected: _selectedType == MovieType.series,
-                        onSelected: (selected) {
-                          if (selected) {
-                            setState(() {
-                              _selectedType = MovieType.series;
-                            });
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                TextFormField(
-                  controller: _trailerUrlController,
-                  decoration: const InputDecoration(
-                    labelText: 'Enlace de YouTube (tráiler)',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Ingrese un enlace de YouTube';
-                    }
-                    final youtubeRegex = RegExp(
-                      r'^(https?\:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$',
-                      caseSensitive: false,
-                    );
-                    if (!youtubeRegex.hasMatch(value)) {
-                      return 'Ingrese una URL válida de YouTube';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 24),
-                ElevatedButton(onPressed: _save, child: const Text('Guardar')),
-                const SizedBox(height: 12),
-                if (kDebugMode)
-                  ElevatedButton(
-                    onPressed: _addTestMovie,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
+      body: Stack(
+        children: [
+          FormBackground(),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 150,
+                left: 24,
+                right: 24,
+                bottom: 24,
+              ),
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 500),
+                decoration: BoxDecoration(
+                  color: colorScheme.surface.withAlpha(242),
+                  borderRadius: BorderRadius.circular(32),
+                  border: Border.all(color: Colors.white, width: 6),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withAlpha(77),
+                      blurRadius: 32,
+                      offset: const Offset(0, 16),
                     ),
-                    child: const Text('Agregar película de test'),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextFormField(
+                          controller: _titleController,
+                          decoration: InputDecoration(
+                            labelText: 'Título',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            filled: true,
+                            fillColor: colorScheme.surfaceBright,
+                            prefixIcon: Icon(
+                              Icons.movie,
+                              color: colorScheme.primary,
+                            ),
+                          ),
+                          validator: (value) => value == null || value.isEmpty
+                              ? 'Ingrese un título'
+                              : null,
+                        ),
+                        const SizedBox(height: 16),
+                        TextFormField(
+                          controller: _descriptionController,
+                          decoration: InputDecoration(
+                            labelText: 'Descripción',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            filled: true,
+                            fillColor: colorScheme.surfaceBright,
+                            prefixIcon: Icon(
+                              Icons.description,
+                              color: colorScheme.primary,
+                            ),
+                          ),
+                          maxLines: 3,
+                          validator: (value) => value == null || value.isEmpty
+                              ? 'Ingrese una descripción'
+                              : null,
+                        ),
+                        const SizedBox(height: 16),
+                        DropdownButtonFormField<MovieCategory>(
+                          value: _selectedCategory,
+                          decoration: InputDecoration(
+                            labelText: 'Categoría',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            filled: true,
+                            fillColor: colorScheme.surfaceBright,
+                            prefixIcon: Icon(
+                              Icons.category,
+                              color: colorScheme.primary,
+                            ),
+                          ),
+                          items: MovieCategory.values
+                              .map(
+                                (cat) => DropdownMenuItem(
+                                  value: cat,
+                                  child: Text(getCategoryLabel(loc, cat)),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedCategory = value;
+                            });
+                          },
+                          validator: (value) =>
+                              value == null ? 'Seleccione una categoría' : null,
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            Text(
+                              'Tipo:',
+                              style: Theme.of(context).textTheme.bodyLarge
+                                  ?.copyWith(
+                                    color: colorScheme.primary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                            const SizedBox(width: 16),
+                            ChoiceChip(
+                              label: const Text('Película'),
+                              selected: _selectedType == MovieType.movie,
+                              onSelected: (selected) {
+                                if (selected) {
+                                  setState(() {
+                                    _selectedType = MovieType.movie;
+                                  });
+                                }
+                              },
+                              selectedColor: colorScheme.primary,
+                              backgroundColor: colorScheme.surfaceBright,
+                              labelStyle: TextStyle(
+                                color: _selectedType == MovieType.movie
+                                    ? colorScheme.onPrimary
+                                    : colorScheme.primary,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            ChoiceChip(
+                              label: const Text('Serie'),
+                              selected: _selectedType == MovieType.series,
+                              onSelected: (selected) {
+                                if (selected) {
+                                  setState(() {
+                                    _selectedType = MovieType.series;
+                                  });
+                                }
+                              },
+                              selectedColor: colorScheme.primary,
+                              backgroundColor: colorScheme.surfaceBright,
+                              labelStyle: TextStyle(
+                                color: _selectedType == MovieType.series
+                                    ? colorScheme.onPrimary
+                                    : colorScheme.primary,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        TextFormField(
+                          controller: _trailerUrlController,
+                          decoration: InputDecoration(
+                            labelText: 'Enlace de YouTube (tráiler)',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            filled: true,
+                            fillColor: colorScheme.surfaceBright,
+                            prefixIcon: Icon(
+                              Icons.link,
+                              color: colorScheme.primary,
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Ingrese un enlace de YouTube';
+                            }
+                            final youtubeRegex = RegExp(
+                              r'^(https?\:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$',
+                              caseSensitive: false,
+                            );
+                            if (!youtubeRegex.hasMatch(value)) {
+                              return 'Ingrese una URL válida de YouTube';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 32),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 56,
+                          child: ElevatedButton.icon(
+                            onPressed: _save,
+                            icon: const Icon(Icons.save, size: 28),
+                            label: const Text(
+                              'Guardar',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: colorScheme.primary,
+                              foregroundColor: colorScheme.onPrimary,
+                              elevation: 8,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              shadowColor: colorScheme.primary.withAlpha(77),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        if (kDebugMode)
+                          SizedBox(
+                            width: double.infinity,
+                            height: 48,
+                            child: ElevatedButton.icon(
+                              onPressed: () =>
+                                  addTestMovies(context, _firestoreService),
+                              icon: const Icon(Icons.bug_report),
+                              label: const Text('Agregar películas de test'),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.orange,
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
-              ],
+                ),
+              ),
             ),
           ),
-        ),
+          FormAppBar(widget: widget),
+        ],
       ),
     );
   }
