@@ -1,5 +1,3 @@
-enum MovieType { movie, series }
-
 enum MovieCategory {
   action,
   anime,

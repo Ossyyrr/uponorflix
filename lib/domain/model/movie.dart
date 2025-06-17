@@ -1,4 +1,4 @@
-import 'package:uponorflix/domain/enum/movie.dart';
+import 'package:uponorflix/domain/enum/movie_type.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Movie {

@@ -1,4 +1,4 @@
-import 'package:uponorflix/domain/enum/movie.dart';
+import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
 
 String getCategoryLabel(AppLocalizations loc, MovieCategory cat) {

@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:uponorflix/data/repository/movie_repository_impl.dart';
-import 'package:uponorflix/domain/enum/movie.dart';
+import 'package:uponorflix/domain/enum/movie_category.dart';
+import 'package:uponorflix/domain/enum/movie_type.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/presentation/utils/movie_category_localization.dart';
@@ -118,107 +119,113 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
           widget.movie == null ? 'Nueva Película' : 'Editar Película',
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                controller: _titleController,
-                decoration: const InputDecoration(labelText: 'Título'),
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'Ingrese un título' : null,
-              ),
-              TextFormField(
-                controller: _descriptionController,
-                decoration: const InputDecoration(labelText: 'Descripción'),
-                validator: (value) => value == null || value.isEmpty
-                    ? 'Ingrese una descripción'
-                    : null,
-              ),
-              DropdownButtonFormField<MovieCategory>(
-                value: _selectedCategory,
-                decoration: const InputDecoration(labelText: 'Categoría'),
-                items: MovieCategory.values
-                    .map(
-                      (cat) => DropdownMenuItem(
-                        value: cat,
-                        child: Text(getCategoryLabel(loc, cat)),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: _titleController,
+                  decoration: const InputDecoration(labelText: 'Título'),
+                  validator: (value) => value == null || value.isEmpty
+                      ? 'Ingrese un título'
+                      : null,
+                ),
+                TextFormField(
+                  controller: _descriptionController,
+                  decoration: const InputDecoration(labelText: 'Descripción'),
+                  validator: (value) => value == null || value.isEmpty
+                      ? 'Ingrese una descripción'
+                      : null,
+                ),
+                DropdownButtonFormField<MovieCategory>(
+                  value: _selectedCategory,
+                  decoration: const InputDecoration(labelText: 'Categoría'),
+                  items: MovieCategory.values
+                      .map(
+                        (cat) => DropdownMenuItem(
+                          value: cat,
+                          child: Text(getCategoryLabel(loc, cat)),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedCategory = value;
+                    });
+                  },
+                  validator: (value) =>
+                      value == null ? 'Seleccione una categoría' : null,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Tipo:',
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
-                    )
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    _selectedCategory = value;
-                  });
-                },
-                validator: (value) =>
-                    value == null ? 'Seleccione una categoría' : null,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12.0),
-                child: Row(
-                  children: [
-                    Text('Tipo:', style: Theme.of(context).textTheme.bodyLarge),
-                    const SizedBox(width: 16),
-                    ChoiceChip(
-                      label: const Text('Película'),
-                      selected: _selectedType == MovieType.movie,
-                      onSelected: (selected) {
-                        if (selected) {
-                          setState(() {
-                            _selectedType = MovieType.movie;
-                          });
-                        }
-                      },
-                    ),
-                    const SizedBox(width: 8),
-                    ChoiceChip(
-                      label: const Text('Serie'),
-                      selected: _selectedType == MovieType.series,
-                      onSelected: (selected) {
-                        if (selected) {
-                          setState(() {
-                            _selectedType = MovieType.series;
-                          });
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              TextFormField(
-                controller: _trailerUrlController,
-                decoration: const InputDecoration(
-                  labelText: 'Enlace de YouTube (tráiler)',
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Ingrese un enlace de YouTube';
-                  }
-                  final youtubeRegex = RegExp(
-                    r'^(https?\:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$',
-                    caseSensitive: false,
-                  );
-                  if (!youtubeRegex.hasMatch(value)) {
-                    return 'Ingrese una URL válida de YouTube';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 24),
-              ElevatedButton(onPressed: _save, child: const Text('Guardar')),
-              const SizedBox(height: 12),
-              if (kDebugMode)
-                ElevatedButton(
-                  onPressed: _addTestMovie,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange,
+                      const SizedBox(width: 16),
+                      ChoiceChip(
+                        label: const Text('Película'),
+                        selected: _selectedType == MovieType.movie,
+                        onSelected: (selected) {
+                          if (selected) {
+                            setState(() {
+                              _selectedType = MovieType.movie;
+                            });
+                          }
+                        },
+                      ),
+                      const SizedBox(width: 8),
+                      ChoiceChip(
+                        label: const Text('Serie'),
+                        selected: _selectedType == MovieType.series,
+                        onSelected: (selected) {
+                          if (selected) {
+                            setState(() {
+                              _selectedType = MovieType.series;
+                            });
+                          }
+                        },
+                      ),
+                    ],
                   ),
-                  child: const Text('Agregar película de test'),
                 ),
-            ],
+                TextFormField(
+                  controller: _trailerUrlController,
+                  decoration: const InputDecoration(
+                    labelText: 'Enlace de YouTube (tráiler)',
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese un enlace de YouTube';
+                    }
+                    final youtubeRegex = RegExp(
+                      r'^(https?\:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$',
+                      caseSensitive: false,
+                    );
+                    if (!youtubeRegex.hasMatch(value)) {
+                      return 'Ingrese una URL válida de YouTube';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 24),
+                ElevatedButton(onPressed: _save, child: const Text('Guardar')),
+                const SizedBox(height: 12),
+                if (kDebugMode)
+                  ElevatedButton(
+                    onPressed: _addTestMovie,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                    ),
+                    child: const Text('Agregar película de test'),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
