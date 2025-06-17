@@ -21,6 +21,7 @@ dependencies:
   youtube_player_flutter: ^9.1.1
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.4
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
@@ -30,3 +31,10 @@ flutter:
   generate: true
   assets:
     - assets/
+    - assets/icon/
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/icon2.png" # flutter pub run flutter_launcher_icons:main
