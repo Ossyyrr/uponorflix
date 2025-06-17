@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uponorflix/layout/settings/settings_screen.dart';
 
 class HomeScreenAppBar extends StatelessWidget {
   final String title;
@@ -7,7 +8,7 @@ class HomeScreenAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       expandedHeight: 180,
       floating: true,
       snap: true,
@@ -18,7 +19,9 @@ class HomeScreenAppBar extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.settings, color: Colors.white),
           onPressed: () {
-            // TODO: go settings
+            Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (_) => const SettingsScreen()));
           },
         ),
       ],
@@ -48,7 +51,7 @@ class HomeScreenAppBar extends StatelessWidget {
                 gradient: LinearGradient(
                   colors: [
                     Colors.black.withAlpha(60),
-                    Theme.of(context).colorScheme.primary.withAlpha(130),
+                    Theme.of(context).colorScheme.primary.withAlpha(170),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,

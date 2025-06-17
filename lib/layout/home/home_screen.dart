@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 onDelete: (movie) => _firestoreService.deleteMovie(movie.id),
                 onTap: (movie) {
-                  // TODO go detail movie
+                  // TODO go detail movie (Youtube video)
                 },
               ),
             ],

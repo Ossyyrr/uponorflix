@@ -11,14 +11,14 @@ class AppTheme {
 
   static ThemeData lightTheme() {
     final colorScheme = ColorScheme.light(
-      primary: Color.fromARGB(255, 0, 110, 221),
-      secondary: Color.fromARGB(255, 111, 186, 113),
-      tertiary: const Color.fromARGB(255, 255, 0, 238),
+      primary: Color(0xFF006199), // Uponor blue
+      secondary: Color(0xFF00796B),
+      tertiary: Color(0xFFB39DDB),
       onPrimary: Colors.white,
-      surface: Colors.white,
-      onSurface: const Color.fromARGB(255, 32, 32, 32),
-      surfaceBright: Colors.black,
-      outline: Colors.blueGrey.withAlpha(60),
+      surface: Color(0xFFF5F5F5),
+      onSurface: Color(0xFF212121),
+      surfaceBright: Color(0xFFE3F2FD),
+      outline: Color(0xFF90A4AE),
     );
 
     return ThemeData.light().copyWith(
@@ -30,13 +30,13 @@ class AppTheme {
   static ThemeData darkTheme() {
     final colorScheme = ColorScheme.dark(
       primary: Colors.pink.shade400,
-      secondary: Colors.purple.shade400,
-      tertiary: const Color.fromARGB(255, 0, 16, 163),
-      onPrimary: Colors.white,
-      surface: Colors.black,
-      onSurface: const Color.fromARGB(255, 226, 226, 226),
-      surfaceBright: Color.fromARGB(255, 255, 218, 108),
-      outline: const Color.fromARGB(255, 141, 198, 226).withAlpha(70),
+      secondary: Color(0xFF80CBC4),
+      tertiary: Color(0xFF9575CD),
+      onPrimary: Colors.black,
+      surface: Color(0xFF121212),
+      onSurface: Color(0xFFF5F5F5),
+      surfaceBright: Color(0xFF263238),
+      outline: Color(0xFFB0BEC5),
     );
 
     return ThemeData.dark().copyWith(
