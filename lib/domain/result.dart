@@ -1,4 +1,4 @@
-enum ResultStatus { success, error }
+import 'package:uponorflix/domain/enum/result_status.dart';
 
 class Result<T> {
   final T? data;

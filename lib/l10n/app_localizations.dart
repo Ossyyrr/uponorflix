@@ -127,6 +127,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dark Mode'**
   String get darkMode;
+
+  /// No description provided for @categoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get categoryAction;
+
+  /// No description provided for @categoryAnime.
+  ///
+  /// In en, this message translates to:
+  /// **'Anime'**
+  String get categoryAnime;
+
+  /// No description provided for @categorySciFi.
+  ///
+  /// In en, this message translates to:
+  /// **'Science Fiction'**
+  String get categorySciFi;
+
+  /// No description provided for @categoryComedy.
+  ///
+  /// In en, this message translates to:
+  /// **'Comedy'**
+  String get categoryComedy;
+
+  /// No description provided for @categoryDrama.
+  ///
+  /// In en, this message translates to:
+  /// **'Drama'**
+  String get categoryDrama;
+
+  /// No description provided for @categoryHorror.
+  ///
+  /// In en, this message translates to:
+  /// **'Horror'**
+  String get categoryHorror;
+
+  /// No description provided for @categoryRomance.
+  ///
+  /// In en, this message translates to:
+  /// **'Romance'**
+  String get categoryRomance;
+
+  /// No description provided for @categoryDocumentary.
+  ///
+  /// In en, this message translates to:
+  /// **'Documentary'**
+  String get categoryDocumentary;
+
+  /// No description provided for @categoryAdventure.
+  ///
+  /// In en, this message translates to:
+  /// **'Adventure'**
+  String get categoryAdventure;
+
+  /// No description provided for @categoryFantasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Fantasy'**
+  String get categoryFantasy;
 }
 
 class _AppLocalizationsDelegate

@@ -1,7 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:uponorflix/data/repository/movie_repository_impl.dart';
+import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/domain/model/movie.dart';
+import 'package:uponorflix/l10n/app_localizations.dart';
+import 'package:uponorflix/presentation/utils/movie_category_localization.dart';
 
 class MovieFormScreen extends StatefulWidget {
   final Movie? movie;
@@ -19,13 +22,16 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
   late TextEditingController _trailerUrlController;
   final MovieRepositoryImpl _firestoreService = MovieRepositoryImpl();
 
+  MovieCategory? _selectedCategory;
+
   void _addTestMovie() {
     final movie = Movie(
-      title: 'Nueva Película',
+      title: 'Cómo entrenar a tu dragón',
       description:
-          'Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo',
+          'Un joven vikingo se hace amigo de un dragón herido y descubre que los dragones no son lo que parecen.',
       trailerUrl:
           'https://www.youtube.com/watch?v=Ns6ZEpQ1xS0&ab_channel=UniversalSpain',
+      category: MovieCategory.action.name,
     );
     _firestoreService.addMovie(movie);
     Navigator.of(context).pop();
@@ -44,6 +50,13 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
     _trailerUrlController = TextEditingController(
       text: widget.movie?.trailerUrl ?? '',
     );
+    _selectedCategory =
+        widget.movie != null && widget.movie!.category.isNotEmpty
+        ? MovieCategory.values.firstWhere(
+            (e) => e.name == widget.movie!.category,
+            orElse: () => MovieCategory.action,
+          )
+        : null;
   }
 
   @override
@@ -62,6 +75,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
         title: _titleController.text,
         description: _descriptionController.text,
         trailerUrl: _trailerUrlController.text,
+        category: _selectedCategory?.name ?? '',
       );
       Navigator.of(context).pop(movie);
     }
@@ -69,6 +83,8 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -94,7 +110,25 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                     ? 'Ingrese una descripción'
                     : null,
               ),
-
+              DropdownButtonFormField<MovieCategory>(
+                value: _selectedCategory,
+                decoration: const InputDecoration(labelText: 'Categoría'),
+                items: MovieCategory.values
+                    .map(
+                      (cat) => DropdownMenuItem(
+                        value: cat,
+                        child: Text(getCategoryLabel(loc, cat)),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedCategory = value;
+                  });
+                },
+                validator: (value) =>
+                    value == null ? 'Seleccione una categoría' : null,
+              ),
               TextFormField(
                 controller: _trailerUrlController,
                 decoration: const InputDecoration(

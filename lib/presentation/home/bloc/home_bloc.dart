@@ -9,6 +9,7 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  // Todo change name to MovieBloc
   final MovieRepositoryImpl _firestoreService;
   StreamSubscription<List<Movie>>? _moviesSubscription;
 

@@ -6,11 +6,13 @@ class Movie {
   final String description;
   final String trailerUrl;
   final String imageUrl;
+  final String category;
 
   Movie({
     this.id = '',
     required this.title,
     required this.description,
+    required this.category,
     this.trailerUrl = '',
   }) : imageUrl = _generateThumbnail(trailerUrl);
 
@@ -27,6 +29,7 @@ class Movie {
       id: id,
       title: data['title'] ?? '',
       description: data['description'] ?? '',
+      category: data['category'] ?? '',
       trailerUrl: data['trailerUrl'] ?? '',
     );
   }
@@ -36,6 +39,7 @@ class Movie {
       'title': title,
       'description': description,
       'trailerUrl': trailerUrl,
+      'imageUrl': imageUrl,
     };
   }
 }

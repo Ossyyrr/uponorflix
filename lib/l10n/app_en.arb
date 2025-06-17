@@ -3,5 +3,15 @@
     "spanish": "Spanish",
     "english": "English",
     "settings": "Settings",
-    "darkMode": "Dark Mode"
+    "darkMode": "Dark Mode",
+    "categoryAction": "Action",
+    "categoryAnime": "Anime",
+    "categorySciFi": "Science Fiction",
+    "categoryComedy": "Comedy",
+    "categoryDrama": "Drama",
+    "categoryHorror": "Horror",
+    "categoryRomance": "Romance",
+    "categoryDocumentary": "Documentary",
+    "categoryAdventure": "Adventure",
+    "categoryFantasy": "Fantasy"
 }

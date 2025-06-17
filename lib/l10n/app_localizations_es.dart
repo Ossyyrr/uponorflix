@@ -22,4 +22,34 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get darkMode => 'Modo oscuro';
+
+  @override
+  String get categoryAction => 'Acción';
+
+  @override
+  String get categoryAnime => 'Animes';
+
+  @override
+  String get categorySciFi => 'Ciencia ficción';
+
+  @override
+  String get categoryComedy => 'Comedia';
+
+  @override
+  String get categoryDrama => 'Drama';
+
+  @override
+  String get categoryHorror => 'Terror';
+
+  @override
+  String get categoryRomance => 'Romance';
+
+  @override
+  String get categoryDocumentary => 'Documental';
+
+  @override
+  String get categoryAdventure => 'Aventura';
+
+  @override
+  String get categoryFantasy => 'Fantasía';
 }
