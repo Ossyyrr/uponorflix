@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uponorflix/core/model/movie.dart';
-import 'package:uponorflix/layout/home/widget/movie_list_tile.dart';
+import 'package:uponorflix/domain/model/movie.dart';
+import 'package:uponorflix/presentation/home/widget/movie_list_tile.dart';
 
 class MovieList extends StatelessWidget {
   final List<Movie> movies;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
-import 'package:uponorflix/layout/settings/bloc/language_bloc.dart';
+import 'package:uponorflix/presentation/settings/bloc/language_bloc.dart';
 
 class LanguageSettings extends StatelessWidget {
   const LanguageSettings({super.key});

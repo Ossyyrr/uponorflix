@@ -1,15 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uponorflix/core/model/movie.dart';
-import 'package:uponorflix/core/result.dart';
+import 'package:uponorflix/domain/interface/data_base_service.dart';
+import 'package:uponorflix/domain/model/movie.dart';
+import 'package:uponorflix/domain/result.dart';
 
-abstract class DataBaseService {
-  Future<Result<void>> addMovie(Movie movie);
-  Future<Result<void>> updateMovie(Movie movie);
-  Future<Result<void>> deleteMovie(String id);
-  Stream<List<Movie>> getMovies();
-}
-
-class FirestoreService implements DataBaseService {
+class FirestoreDataBaseService implements DataBaseService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   @override

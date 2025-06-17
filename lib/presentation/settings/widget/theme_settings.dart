@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
-import 'package:uponorflix/layout/settings/bloc/theme_bloc.dart';
+import 'package:uponorflix/presentation/settings/bloc/theme_bloc.dart';
 
 class ThemeSettings extends StatelessWidget {
   const ThemeSettings({super.key});

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uponorflix/core/model/movie.dart';
-import 'package:uponorflix/layout/home/bloc/home_bloc.dart';
-import 'package:uponorflix/layout/home/widget/home_screen_app_bar.dart';
-import 'package:uponorflix/layout/home/widget/movie_list.dart';
-import 'package:uponorflix/layout/movieFormScreen/movie_form_screen.dart';
-import 'package:uponorflix/layout/utils/enum/screen_status.dart';
+import 'package:uponorflix/domain/model/movie.dart';
+import 'package:uponorflix/presentation/home/bloc/home_bloc.dart';
+import 'package:uponorflix/presentation/home/widget/home_screen_app_bar.dart';
+import 'package:uponorflix/presentation/home/widget/movie_list.dart';
+import 'package:uponorflix/presentation/movieFormScreen/movie_form_screen.dart';
+import 'package:uponorflix/presentation/utils/enum/screen_status.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key, required this.title});

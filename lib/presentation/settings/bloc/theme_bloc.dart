@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:uponorflix/layout/utils/shared_prefereces_utils.dart';
+import 'package:uponorflix/presentation/utils/shared_prefereces_utils.dart';
 
 part 'theme_event.dart';
 part 'theme_state.dart';

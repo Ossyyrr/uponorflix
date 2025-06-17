@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uponorflix/layout/settings/settings_screen.dart';
+import 'package:uponorflix/presentation/settings/settings_screen.dart';
 
 class HomeScreenAppBar extends StatelessWidget {
   final String title;

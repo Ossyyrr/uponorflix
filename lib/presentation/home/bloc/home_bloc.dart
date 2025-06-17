@@ -1,18 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uponorflix/core/model/movie.dart';
-import 'package:uponorflix/data/service/firestore_service.dart';
-import 'package:uponorflix/layout/utils/enum/screen_status.dart';
+import 'package:uponorflix/data/service/firestore_data_base_service.dart';
+import 'package:uponorflix/domain/model/movie.dart';
+import 'package:uponorflix/presentation/utils/enum/screen_status.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final FirestoreService _firestoreService;
+  final FirestoreDataBaseService _firestoreService;
   StreamSubscription<List<Movie>>? _moviesSubscription;
 
-  HomeBloc({required FirestoreService firestoreService})
+  HomeBloc({required FirestoreDataBaseService firestoreService})
     : _firestoreService = firestoreService,
       super(const HomeState()) {
     on<LoadMovies>(_onLoadMovies);

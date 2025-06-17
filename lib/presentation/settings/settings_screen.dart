@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uponorflix/layout/settings/widget/language_settings.dart';
-import 'package:uponorflix/layout/settings/widget/theme_settings.dart';
+import 'package:uponorflix/presentation/settings/widget/language_settings.dart';
+import 'package:uponorflix/presentation/settings/widget/theme_settings.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
