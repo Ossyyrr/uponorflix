@@ -16,6 +16,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
   late TextEditingController _titleController;
   late TextEditingController _descriptionController;
   late TextEditingController _imageUrlController;
+  late TextEditingController _trailerUrlController;
   final MovieRepositoryImpl _firestoreService = MovieRepositoryImpl();
 
   void _addTestMovie() {
@@ -25,6 +26,8 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
           'Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo Descripción de ejemplo',
       imageUrl:
           'https://ih1.redbubble.net/image.4598241582.6557/st,small,507x507-pad,600x600,f8f8f8.jpg',
+      trailerUrl:
+          'https://www.youtube.com/watch?v=Ns6ZEpQ1xS0&ab_channel=UniversalSpain',
     );
     _firestoreService.addMovie(movie);
     Navigator.of(context).pop();
@@ -40,6 +43,9 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
     _imageUrlController = TextEditingController(
       text: widget.movie?.imageUrl ?? '',
     );
+    _trailerUrlController = TextEditingController(
+      text: widget.movie?.trailerUrl ?? '',
+    );
   }
 
   @override
@@ -47,6 +53,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
     _titleController.dispose();
     _descriptionController.dispose();
     _imageUrlController.dispose();
+    _trailerUrlController.dispose();
     super.dispose();
   }
 
@@ -57,6 +64,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
         title: _titleController.text,
         description: _descriptionController.text,
         imageUrl: _imageUrlController.text,
+        trailerUrl: _trailerUrlController.text,
       );
       Navigator.of(context).pop(movie);
     }
@@ -96,6 +104,15 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                 ),
                 validator: (value) =>
                     value == null || value.isEmpty ? 'Ingrese una URL' : null,
+              ),
+              TextFormField(
+                controller: _trailerUrlController,
+                decoration: const InputDecoration(
+                  labelText: 'Enlace de YouTube (tráiler)',
+                ),
+                validator: (value) => value == null || value.isEmpty
+                    ? 'Ingrese un enlace de YouTube'
+                    : null,
               ),
               const SizedBox(height: 24),
               ElevatedButton(onPressed: _save, child: const Text('Guardar')),

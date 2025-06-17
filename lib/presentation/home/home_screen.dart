@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uponorflix/domain/model/movie.dart';
+import 'package:uponorflix/presentation/detail/detail_screen.dart';
 import 'package:uponorflix/presentation/home/bloc/home_bloc.dart';
 import 'package:uponorflix/presentation/home/widget/home_screen_app_bar.dart';
 import 'package:uponorflix/presentation/home/widget/movie_list.dart';
@@ -44,7 +45,11 @@ class HomeScreen extends StatelessWidget {
                       context.read<HomeBloc>().add(DeleteMovie(movie.id));
                     },
                     onTap: (movie) {
-                      // TODO: go detail movie (Youtube video)
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => DetailScreen(movie: movie),
+                        ),
+                      );
                     },
                   ),
                 ],

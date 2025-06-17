@@ -10,6 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final prefs = await SharedPreferences.getInstance();
+  // TODO Maybe use getIt
   final MovieRepositoryImpl firestoreService = MovieRepositoryImpl();
   runApp(App(prefs: prefs, firestoreService: firestoreService));
 }
