@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<HomeBloc, HomeState>(
+      body: BlocBuilder<MovieBloc, MovieState>(
         builder: (context, state) {
           return state.status.when(
             initial: () => const Center(child: CircularProgressIndicator()),
@@ -38,11 +38,13 @@ class HomeScreen extends StatelessWidget {
                             ),
                           );
                       if (updatedMovie != null) {
-                        context.read<HomeBloc>().add(UpdateMovie(updatedMovie));
+                        context.read<MovieBloc>().add(
+                          UpdateMovie(updatedMovie),
+                        );
                       }
                     },
                     onDelete: (movie) {
-                      context.read<HomeBloc>().add(DeleteMovie(movie.id));
+                      context.read<MovieBloc>().add(DeleteMovie(movie.id));
                     },
                     onTap: (movie) {
                       Navigator.of(context).push(
@@ -65,7 +67,7 @@ class HomeScreen extends StatelessWidget {
               MaterialPageRoute(builder: (_) => const MovieFormScreen()),
             );
             if (movie != null) {
-              context.read<HomeBloc>().add(AddMovie(movie));
+              context.read<MovieBloc>().add(AddMovie(movie));
             }
           },
           tooltip: 'Agregar película',

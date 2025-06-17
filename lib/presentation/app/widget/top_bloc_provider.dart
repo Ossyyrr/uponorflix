@@ -32,7 +32,7 @@ class TopBlocProvider extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) =>
-              HomeBloc(firestoreService: _firestoreService)..add(LoadMovies()),
+              MovieBloc(firestoreService: _firestoreService)..add(LoadMovies()),
         ),
       ],
       child: child,

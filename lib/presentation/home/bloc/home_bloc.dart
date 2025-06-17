@@ -8,14 +8,14 @@ import 'package:uponorflix/presentation/utils/enum/screen_status.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
+class MovieBloc extends Bloc<MovieEvent, MovieState> {
   // Todo change name to MovieBloc
   final MovieRepositoryImpl _firestoreService;
   StreamSubscription<List<Movie>>? _moviesSubscription;
 
-  HomeBloc({required MovieRepositoryImpl firestoreService})
+  MovieBloc({required MovieRepositoryImpl firestoreService})
     : _firestoreService = firestoreService,
-      super(const HomeState()) {
+      super(const MovieState()) {
     on<LoadMovies>(_onLoadMovies);
     on<AddMovie>(_onAddMovie);
     on<UpdateMovie>(_onUpdateMovie);
@@ -24,7 +24,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
   void _onMoviesUpdatedListener(
     MoviesUpdatedListener event,
-    Emitter<HomeState> emit,
+    Emitter<MovieState> emit,
   ) {
     emit(
       state.copyWith(
@@ -35,7 +35,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     );
   }
 
-  void _onLoadMovies(LoadMovies event, Emitter<HomeState> emit) {
+  void _onLoadMovies(LoadMovies event, Emitter<MovieState> emit) {
     emit(state.copyWith(status: ScreenStatus.loading));
     _moviesSubscription?.cancel();
     _moviesSubscription = _firestoreService.getMovies().listen(
@@ -53,7 +53,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     );
   }
 
-  Future<void> _onAddMovie(AddMovie event, Emitter<HomeState> emit) async {
+  Future<void> _onAddMovie(AddMovie event, Emitter<MovieState> emit) async {
     final result = await _firestoreService.addMovie(event.movie);
     result.when(
       success: (_) => emit(state.copyWith(status: ScreenStatus.success)),
@@ -64,7 +64,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _onUpdateMovie(
     UpdateMovie event,
-    Emitter<HomeState> emit,
+    Emitter<MovieState> emit,
   ) async {
     final result = await _firestoreService.updateMovie(event.movie);
     result.when(
@@ -76,7 +76,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _onDeleteMovie(
     DeleteMovie event,
-    Emitter<HomeState> emit,
+    Emitter<MovieState> emit,
   ) async {
     final result = await _firestoreService.deleteMovie(event.id);
     result.when(
