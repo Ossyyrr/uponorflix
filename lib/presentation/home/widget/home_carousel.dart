@@ -6,19 +6,22 @@ import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
 class HomeCarousel extends StatelessWidget {
   HomeCarousel({super.key});
 
-  final PageController _controller = PageController(viewportFraction: 0.7);
+  final PageController _controller = PageController(
+    viewportFraction: 0.5,
+    initialPage: 1,
+  );
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MovieBloc, MovieState>(
       builder: (context, state) {
         double value = 1.0;
-        final movies = state.movies.take(5).toList();
+        final movies = state.movies.toList();
         if (movies.isEmpty) return const SizedBox.shrink();
 
         return SliverToBoxAdapter(
           child: SizedBox(
-            height: 150,
+            height: 100,
             child: PageView.builder(
               controller: _controller,
               itemCount: movies.length,
@@ -30,9 +33,9 @@ class HomeCarousel extends StatelessWidget {
                         (_controller.page ?? _controller.initialPage)
                             .toDouble() -
                         index;
-                    value = (1 - (value.abs() * 0.3)).clamp(0.7, 1.0);
+                    value = (1 - (value.abs() * 0.3));
                     final borderRadius = BorderRadius.circular(
-                      16 + (100 - 16) * (1 - value),
+                      16 + 200 * (1 - value),
                     );
                     return Transform.scale(
                       scale: value,
