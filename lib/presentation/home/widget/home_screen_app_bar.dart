@@ -26,7 +26,7 @@ class HomeScreenAppBar extends StatelessWidget {
         ),
       ],
       flexibleSpace: FlexibleSpaceBar(
-        titlePadding: const EdgeInsets.only(left: 16, bottom: 16, right: 60),
+        titlePadding: const EdgeInsets.only(left: 32, bottom: 32, right: 60),
         title: Text(
           title,
           style: const TextStyle(

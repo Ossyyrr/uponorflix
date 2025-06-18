@@ -14,7 +14,7 @@ class CategorySection extends StatelessWidget {
     final loc = AppLocalizations.of(context)!;
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        padding: const EdgeInsets.only(top: 16, left: 32, right: 32),
         child: Text(
           getCategoryLabel(loc, entry.key),
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
