@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uponorflix/domain/model/movie.dart';
-import 'package:uponorflix/presentation/home/bloc/home_bloc.dart';
+import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
 import 'package:uponorflix/presentation/movieForm/movie_form_screen.dart';
 
 class AddMovieButton extends StatelessWidget {

@@ -1,4 +1,4 @@
-part of 'home_bloc.dart';
+part of 'movie_bloc.dart';
 
 class MovieState {
   final ScreenStatus status;
@@ -10,6 +10,13 @@ class MovieState {
     this.movies = const [],
     this.errorMessage,
   });
+  Map<MovieCategory, List<Movie>> get moviesByCategory {
+    final map = <MovieCategory, List<Movie>>{};
+    for (final movie in movies) {
+      map.putIfAbsent(movie.category, () => []).add(movie);
+    }
+    return map;
+  }
 
   MovieState copyWith({
     ScreenStatus? status,

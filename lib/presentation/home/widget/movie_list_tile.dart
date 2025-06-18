@@ -26,9 +26,9 @@ class MovieListTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withAlpha(50),
-              blurRadius: 8,
-              offset: const Offset(0, 4),
+              color: Theme.of(context).colorScheme.tertiary.withAlpha(80),
+              blurRadius: 16,
+              offset: const Offset(3, 3),
             ),
           ],
           image: movie.imageUrl.isNotEmpty

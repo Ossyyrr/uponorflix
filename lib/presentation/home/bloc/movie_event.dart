@@ -1,5 +1,5 @@
 // filepath: /Users/ossyyrr/Developer/uponorflix/lib/layout/home/bloc/home_event.dart
-part of 'home_bloc.dart';
+part of 'movie_bloc.dart';
 
 class MovieEvent {}
 

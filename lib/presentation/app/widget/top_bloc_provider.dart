@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uponorflix/data/repository/movie_repository_impl.dart';
-import 'package:uponorflix/presentation/home/bloc/home_bloc.dart';
+import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
 import 'package:uponorflix/presentation/settings/bloc/language_bloc.dart';
 import 'package:uponorflix/presentation/settings/bloc/theme_bloc.dart';
 

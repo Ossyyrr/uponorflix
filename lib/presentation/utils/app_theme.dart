@@ -11,10 +11,10 @@ class AppTheme {
 
   static ThemeData lightTheme() {
     final colorScheme = ColorScheme.light(
-      primary: Color(0xFF006199), // Uponor blue
+      primary: Color(0xFF006199), // Uponor
       secondary: Color(0xFF00796B),
       tertiary: Color(0xFFB39DDB),
-      onPrimary: Colors.white,
+      onPrimary: const Color.fromARGB(255, 218, 218, 218),
       surface: Color(0xFFF5F5F5),
       onSurface: Color(0xFF212121),
       surfaceBright: Color(0xFFE3F2FD),
