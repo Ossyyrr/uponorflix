@@ -9,8 +9,7 @@ import 'package:uponorflix/presentation/home/widget/movie_list.dart';
 import 'package:uponorflix/presentation/utils/enum/screen_status.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key, required this.title});
-  final String title;
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +22,22 @@ class HomeScreen extends StatelessWidget {
             loading: () => const Center(child: CircularProgressIndicator()),
             error: () => Center(child: Text(state.errorMessage ?? 'Error')),
             success: () {
-              if (state.movies.isEmpty) {
-                return const Center(child: Text('No hay películas'));
-              }
               return CustomScrollView(
                 slivers: [
-                  HomeScreenAppBar(title: title),
+                  HomeScreenAppBar(),
                   const SliverToBoxAdapter(child: SizedBox(height: 32)),
                   HomeCarousel(),
                   const SliverToBoxAdapter(child: SizedBox(height: 16)),
-                  for (final entry in state.moviesByCategory.entries) ...[
-                    CategorySection(entry: entry),
-                    MovieList(movies: entry.value),
-                  ],
+                  if (state.filteredMovies.isEmpty)
+                    const SliverToBoxAdapter(
+                      child: Center(child: Text('No hay películas')),
+                    )
+                  else
+                    for (final entry
+                        in state.filteredMoviesByCategory.entries) ...[
+                      CategorySection(entry: entry),
+                      MovieList(movies: entry.value),
+                    ],
                   const SliverToBoxAdapter(child: SizedBox(height: 32)),
                 ],
               );

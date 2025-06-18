@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uponorflix/domain/model/movie.dart';
-import 'package:uponorflix/presentation/home/widget/movie_list_tile.dart';
+import 'package:uponorflix/presentation/home/widget/movie_card.dart';
 
 class MovieList extends StatelessWidget {
   final List<Movie> movies;
@@ -19,7 +19,7 @@ class MovieList extends StatelessWidget {
           separatorBuilder: (_, __) => const SizedBox(),
           itemBuilder: (context, index) {
             final movie = movies[index];
-            return SizedBox(width: 320, child: MovieListTile(movie: movie));
+            return SizedBox(width: 320, child: MovieCard(movie: movie));
           },
         ),
       ),

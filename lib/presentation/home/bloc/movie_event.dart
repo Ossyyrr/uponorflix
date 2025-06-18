@@ -1,4 +1,3 @@
-// filepath: /Users/ossyyrr/Developer/uponorflix/lib/layout/home/bloc/home_event.dart
 part of 'movie_bloc.dart';
 
 class MovieEvent {}
@@ -23,4 +22,14 @@ class DeleteMovie extends MovieEvent {
 class MoviesUpdatedListener extends MovieEvent {
   final List<Movie> movies;
   MoviesUpdatedListener(this.movies);
+}
+
+class ChangeCategoryFilter extends MovieEvent {
+  final MovieCategory? category;
+  ChangeCategoryFilter(this.category);
+}
+
+class ChangeTypeFilter extends MovieEvent {
+  final MovieType? type;
+  ChangeTypeFilter(this.type);
 }

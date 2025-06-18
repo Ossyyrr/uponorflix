@@ -7,6 +7,7 @@ import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/presentation/movieForm/util/add_test_movies.dart';
 import 'package:uponorflix/presentation/movieForm/widget/form_app_bar.dart';
 import 'package:uponorflix/presentation/movieForm/widget/form_background.dart';
+import 'package:uponorflix/presentation/movieForm/widget/movie_type_choice_chips.dart';
 import 'package:uponorflix/presentation/utils/movie_category_localization.dart';
 
 class MovieFormScreen extends StatefulWidget {
@@ -175,61 +176,13 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                               value == null ? 'Seleccione una categoría' : null,
                         ),
                         const SizedBox(height: 16),
-                        Row(
-                          children: [
-                            Text(
-                              'Tipo:',
-                              style: Theme.of(context).textTheme.bodyLarge
-                                  ?.copyWith(
-                                    color: colorScheme.primary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            const SizedBox(width: 16),
-                            ChoiceChip(
-                              label: const Text('Película'),
-                              selected: _selectedType == MovieType.movie,
-                              onSelected: (selected) {
-                                if (selected) {
-                                  setState(() {
-                                    _selectedType = MovieType.movie;
-                                  });
-                                }
-                              },
-                              selectedColor: colorScheme.primary,
-                              backgroundColor: colorScheme.surfaceBright,
-                              labelStyle: TextStyle(
-                                color: _selectedType == MovieType.movie
-                                    ? colorScheme.onPrimary
-                                    : colorScheme.primary,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            ChoiceChip(
-                              label: const Text('Serie'),
-                              selected: _selectedType == MovieType.series,
-                              onSelected: (selected) {
-                                if (selected) {
-                                  setState(() {
-                                    _selectedType = MovieType.series;
-                                  });
-                                }
-                              },
-                              selectedColor: colorScheme.primary,
-                              backgroundColor: colorScheme.surfaceBright,
-                              labelStyle: TextStyle(
-                                color: _selectedType == MovieType.series
-                                    ? colorScheme.onPrimary
-                                    : colorScheme.primary,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                            ),
-                          ],
+                        MovieTypeChoiceChips(
+                          selectedType: _selectedType,
+                          onTypeChanged: (type) {
+                            setState(() {
+                              _selectedType = type;
+                            });
+                          },
                         ),
                         const SizedBox(height: 16),
                         TextFormField(

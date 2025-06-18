@@ -31,7 +31,7 @@ class App extends StatelessWidget {
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
                 locale: locale,
-                home: const HomeScreen(title: 'UponorFlix'),
+                home: const HomeScreen(),
               );
             },
           );

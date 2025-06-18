@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uponorflix/data/repository/movie_repository_impl.dart';
 import 'package:uponorflix/domain/enum/movie_category.dart';
+import 'package:uponorflix/domain/enum/movie_type.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 import 'package:uponorflix/presentation/utils/enum/screen_status.dart';
 
@@ -10,18 +11,22 @@ part 'movie_event.dart';
 part 'movie_state.dart';
 
 class MovieBloc extends Bloc<MovieEvent, MovieState> {
-  // Todo change name to MovieBloc
   final MovieRepositoryImpl _firestoreService;
   StreamSubscription<List<Movie>>? _moviesSubscription;
-
   MovieBloc({required MovieRepositoryImpl firestoreService})
     : _firestoreService = firestoreService,
-      super(const MovieState()) {
+      super(const MovieState(selectedType: null, selectedCategory: null)) {
     on<LoadMovies>(_onLoadMovies);
     on<AddMovie>(_onAddMovie);
     on<UpdateMovie>(_onUpdateMovie);
     on<DeleteMovie>(_onDeleteMovie);
     on<MoviesUpdatedListener>(_onMoviesUpdatedListener);
+    on<ChangeCategoryFilter>(
+      (event, emit) => emit(state.copyWith(selectedCategory: event.category)),
+    );
+    on<ChangeTypeFilter>(
+      (event, emit) => emit(state.copyWith(selectedType: event.type)),
+    );
   }
   void _onMoviesUpdatedListener(
     MoviesUpdatedListener event,
