@@ -3,15 +3,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:uponorflix/data/repository/movie_repository_impl.dart';
 import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/domain/enum/movie_type.dart';
 import 'package:uponorflix/domain/interface/movie_repository.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 
-void addTestMovie(
-  BuildContext context,
-  MovieRepository firestoreService,
-) async {
+void addTestMovie(BuildContext context) async {
   final movies = [
     Movie(
       title: 'Cómo entrenar a tu dragón',
@@ -32,11 +30,11 @@ void addTestMovie(
       type: MovieType.movie,
     ),
     Movie(
-      title: 'Coco',
+      title: 'Vaiana',
       description:
-          'Un niño mexicano se embarca en una aventura en la Tierra de los Muertos para descubrir la historia de su familia.',
+          'Una joven polinesia se embarca en una aventura oceánica para salvar a su pueblo y descubrir su verdadero destino.',
       trailerUrl:
-          'https://www.youtube.com/watch?v=Ga6RYejo6Hk&ab_channel=Pixar',
+          'https://www.youtube.com/watch?v=79DijItQXMM&ab_channel=DisneyEspaña',
       category: MovieCategory.fantasy,
       type: MovieType.movie,
     ),
@@ -116,6 +114,8 @@ void addTestMovie(
 
   final random = Random();
   final randomMovie = movies[random.nextInt(movies.length)];
+  // TODO move to bloc - Service
+  final MovieRepository firestoreService = MovieRepositoryImpl();
   await firestoreService.addMovie(randomMovie);
   Navigator.of(context).pop();
 }

@@ -6,7 +6,6 @@ import 'package:uponorflix/presentation/utils/movie_category_localization.dart';
 
 class CategorySection extends StatelessWidget {
   const CategorySection({super.key, required this.entry});
-
   final MapEntry<MovieCategory, List<Movie>> entry;
 
   @override
@@ -19,6 +18,7 @@ class CategorySection extends StatelessWidget {
           getCategoryLabel(loc, entry.key),
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.bold,
+            fontSize: 18,
             color: Theme.of(context).colorScheme.primary,
           ),
         ),

@@ -33,6 +33,7 @@ class HomeScreen extends StatelessWidget {
                     CategorySection(entry: entry),
                     MovieList(movies: entry.value),
                   ],
+                  const SliverToBoxAdapter(child: SizedBox(height: 32)),
                 ],
               );
             },

@@ -1,34 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uponorflix/domain/model/movie.dart';
+import 'package:uponorflix/presentation/detail/detail_screen.dart';
+import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
+import 'package:uponorflix/presentation/movieForm/movie_form_screen.dart';
 
 class MovieListTile extends StatelessWidget {
   final Movie movie;
-  final VoidCallback onEdit;
-  final VoidCallback onDelete;
-  final VoidCallback onTap;
 
-  const MovieListTile({
-    super.key,
-    required this.movie,
-    required this.onEdit,
-    required this.onDelete,
-    required this.onTap,
-  });
+  const MovieListTile({super.key, required this.movie});
+
+  Future<void> _editMovie(BuildContext context) async {
+    final updatedMovie = await Navigator.of(context).push<Movie>(
+      MaterialPageRoute(builder: (_) => MovieFormScreen(movie: movie)),
+    );
+    if (updatedMovie == null) return;
+    context.read<MovieBloc>().add(UpdateMovie(updatedMovie));
+  }
+
+  void _deleteMovie(BuildContext context) {
+    context.read<MovieBloc>().add(DeleteMovie(movie.id));
+  }
+
+  void _openDetail(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => DetailScreen(movie: movie)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => _openDetail(context),
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        height: 180,
+        margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).colorScheme.tertiary.withAlpha(80),
-              blurRadius: 16,
-              offset: const Offset(3, 3),
+              color: Theme.of(context).colorScheme.primary.withAlpha(80),
+              blurRadius: 8,
+              spreadRadius: 2,
+              offset: const Offset(4, 4),
             ),
           ],
           image: movie.imageUrl.isNotEmpty
@@ -96,9 +110,9 @@ class MovieListTile extends StatelessWidget {
                 ),
                 onSelected: (value) {
                   if (value == 'edit') {
-                    onEdit();
+                    _editMovie(context);
                   } else if (value == 'delete') {
-                    onDelete();
+                    _deleteMovie(context);
                   }
                 },
                 itemBuilder: (context) => [

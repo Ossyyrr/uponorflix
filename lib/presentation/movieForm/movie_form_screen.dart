@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:uponorflix/data/repository/movie_repository_impl.dart';
 import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/domain/enum/movie_type.dart';
-import 'package:uponorflix/domain/interface/movie_repository.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/presentation/movieForm/util/add_test_movies.dart';
@@ -25,8 +23,6 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
   late TextEditingController _descriptionController;
   late TextEditingController _imageUrlController;
   late TextEditingController _trailerUrlController;
-  final MovieRepository _firestoreService =
-      MovieRepositoryImpl(); // TODO gestionar con Bloc
 
   MovieCategory? _selectedCategory;
   MovieType _selectedType = MovieType.movie;
@@ -295,8 +291,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                             width: double.infinity,
                             height: 48,
                             child: ElevatedButton.icon(
-                              onPressed: () =>
-                                  addTestMovie(context, _firestoreService),
+                              onPressed: () => addTestMovie(context),
                               icon: const Icon(Icons.bug_report),
                               label: const Text('Agregar películas de test'),
                               style: ElevatedButton.styleFrom(
