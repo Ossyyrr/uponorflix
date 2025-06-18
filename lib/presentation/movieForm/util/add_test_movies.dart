@@ -25,7 +25,7 @@ void addTestMovie(BuildContext context) async {
       description:
           'Un grupo de exploradores viaja a través de un agujero de gusano en el espacio en un intento de asegurar la supervivencia de la humanidad.',
       trailerUrl:
-          'https://www.youtube.com/watch?v=zSWdZVtXT7E&ab_channel=WarnerBros.Pictures',
+          'https://www.youtube.com/watch?v=2LqzF5WauAw&ab_channel=InterstellarMovie',
       category: MovieCategory.sciFi,
       type: MovieType.movie,
     ),

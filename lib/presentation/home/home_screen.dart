@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
 import 'package:uponorflix/presentation/home/widget/add_movie_button.dart';
 import 'package:uponorflix/presentation/home/widget/category_section.dart';
+import 'package:uponorflix/presentation/home/widget/home_carousel.dart';
 import 'package:uponorflix/presentation/home/widget/home_screen_app_bar.dart';
 import 'package:uponorflix/presentation/home/widget/movie_list.dart';
 import 'package:uponorflix/presentation/utils/enum/screen_status.dart';
@@ -25,10 +26,12 @@ class HomeScreen extends StatelessWidget {
               if (state.movies.isEmpty) {
                 return const Center(child: Text('No hay películas'));
               }
-
               return CustomScrollView(
                 slivers: [
                   HomeScreenAppBar(title: title),
+                  const SliverToBoxAdapter(child: SizedBox(height: 32)),
+                  HomeCarousel(),
+                  const SliverToBoxAdapter(child: SizedBox(height: 16)),
                   for (final entry in state.moviesByCategory.entries) ...[
                     CategorySection(entry: entry),
                     MovieList(movies: entry.value),
