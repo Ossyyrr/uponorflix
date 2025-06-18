@@ -44,7 +44,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
     _trailerUrlController = TextEditingController(
       text: widget.movie?.trailerUrl ?? '',
     );
-    _selectedCategory = movieCategoryFromString(widget.movie?.category);
+    _selectedCategory = widget.movie?.category;
     _selectedType = widget.movie?.type ?? MovieType.movie;
   }
 
@@ -64,7 +64,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
         title: _titleController.text,
         description: _descriptionController.text,
         trailerUrl: _trailerUrlController.text,
-        category: _selectedCategory?.name ?? '',
+        category: _selectedCategory!,
         type: _selectedType,
       );
       Navigator.of(context).pop(movie);
@@ -296,7 +296,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                             height: 48,
                             child: ElevatedButton.icon(
                               onPressed: () =>
-                                  addTestMovies(context, _firestoreService),
+                                  addTestMovie(context, _firestoreService),
                               icon: const Icon(Icons.bug_report),
                               label: const Text('Agregar películas de test'),
                               style: ElevatedButton.styleFrom(

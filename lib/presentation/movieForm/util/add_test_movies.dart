@@ -1,10 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/domain/enum/movie_type.dart';
 import 'package:uponorflix/domain/interface/movie_repository.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 
-void addTestMovies(
+void addTestMovie(
   BuildContext context,
   MovieRepository firestoreService,
 ) async {
@@ -15,7 +19,7 @@ void addTestMovies(
           'Un joven vikingo se hace amigo de un dragón herido y descubre que los dragones no son lo que parecen.',
       trailerUrl:
           'https://www.youtube.com/watch?v=Ns6ZEpQ1xS0&ab_channel=UniversalSpain',
-      category: MovieCategory.adventure.name,
+      category: MovieCategory.adventure,
       type: MovieType.movie,
     ),
     Movie(
@@ -24,7 +28,7 @@ void addTestMovies(
           'Un grupo de exploradores viaja a través de un agujero de gusano en el espacio en un intento de asegurar la supervivencia de la humanidad.',
       trailerUrl:
           'https://www.youtube.com/watch?v=zSWdZVtXT7E&ab_channel=WarnerBros.Pictures',
-      category: MovieCategory.sciFi.name,
+      category: MovieCategory.sciFi,
       type: MovieType.movie,
     ),
     Movie(
@@ -33,7 +37,7 @@ void addTestMovies(
           'Un niño mexicano se embarca en una aventura en la Tierra de los Muertos para descubrir la historia de su familia.',
       trailerUrl:
           'https://www.youtube.com/watch?v=Ga6RYejo6Hk&ab_channel=Pixar',
-      category: MovieCategory.fantasy.name,
+      category: MovieCategory.fantasy,
       type: MovieType.movie,
     ),
     Movie(
@@ -42,7 +46,7 @@ void addTestMovies(
           'Miles Morales se convierte en Spider-Man y se une a otros Spider-People de diferentes dimensiones para salvar el multiverso.',
       trailerUrl:
           'https://www.youtube.com/watch?v=ii3n7hYQOl4&ab_channel=SonyPicturesEspaña',
-      category: MovieCategory.action.name,
+      category: MovieCategory.action,
       type: MovieType.movie,
     ),
     Movie(
@@ -51,7 +55,7 @@ void addTestMovies(
           'Un ex-marine parapléjico es enviado a la luna Pandora en una misión única, pero se debate entre seguir órdenes y proteger el mundo que siente como suyo.',
       trailerUrl:
           'https://www.youtube.com/watch?v=5PSNL1qE6VY&ab_channel=20thCenturyStudiosEspaña',
-      category: MovieCategory.fantasy.name,
+      category: MovieCategory.fantasy,
       type: MovieType.movie,
     ),
     Movie(
@@ -60,7 +64,7 @@ void addTestMovies(
           'Un profesor de química se convierte en fabricante de metanfetamina tras ser diagnosticado con cáncer.',
       trailerUrl:
           'https://www.youtube.com/watch?v=HhesaQXLuRY&ab_channel=BreakingBad',
-      category: MovieCategory.drama.name,
+      category: MovieCategory.drama,
       type: MovieType.series,
     ),
     Movie(
@@ -69,7 +73,7 @@ void addTestMovies(
           'Un cazarrecompensas viaja por la galaxia protegiendo a un misterioso niño de la misma especie que Yoda.',
       trailerUrl:
           'https://www.youtube.com/watch?v=aOC8E8z_ifw&ab_channel=StarWarsEspa%C3%B1a',
-      category: MovieCategory.adventure.name,
+      category: MovieCategory.adventure,
       type: MovieType.series,
     ),
     Movie(
@@ -78,12 +82,40 @@ void addTestMovies(
           'Una comedia sobre la vida diaria de los empleados de una oficina de ventas de papel en Scranton.',
       trailerUrl:
           'https://www.youtube.com/watch?v=Vmb1tqYqyII&ab_channel=TheOffice',
-      category: MovieCategory.comedy.name,
+      category: MovieCategory.comedy,
+      type: MovieType.series,
+    ),
+    Movie(
+      title: 'Marte (The Martian)',
+      description:
+          'Un astronauta queda atrapado en Marte y debe sobrevivir mientras espera ser rescatado.',
+      trailerUrl:
+          'https://www.youtube.com/watch?v=ej3ioOneTy8&ab_channel=20thCenturyStudiosEspaña',
+      category: MovieCategory.sciFi,
+      type: MovieType.movie,
+    ),
+    Movie(
+      title: 'Chernobyl',
+      description:
+          'Miniserie que relata los eventos del desastre nuclear de Chernóbil y sus consecuencias.',
+      trailerUrl:
+          'https://www.youtube.com/watch?v=s9APLXM9Ei8&ab_channel=HBOEspana',
+      category: MovieCategory.drama,
+      type: MovieType.series,
+    ),
+    Movie(
+      title: 'Arcane',
+      description:
+          'En la ciudad de Piltover, dos hermanas se ven envueltas en una guerra entre tecnologías mágicas y conflictos sociales.',
+      trailerUrl:
+          'https://www.youtube.com/watch?v=fXmAurh012s&ab_channel=Netflix',
+      category: MovieCategory.anime,
       type: MovieType.series,
     ),
   ];
+
+  final random = Random();
+  final randomMovie = movies[random.nextInt(movies.length)];
+  await firestoreService.addMovie(randomMovie);
   Navigator.of(context).pop();
-  for (final movie in movies) {
-    await firestoreService.addMovie(movie);
-  }
 }

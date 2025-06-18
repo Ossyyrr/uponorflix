@@ -1,3 +1,4 @@
+import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/domain/enum/movie_type.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -7,7 +8,7 @@ class Movie {
   final String description;
   final String trailerUrl;
   final String imageUrl;
-  final String category;
+  final MovieCategory category;
   final MovieType type;
 
   Movie({
@@ -32,7 +33,8 @@ class Movie {
       id: id,
       title: data['title'] ?? '',
       description: data['description'] ?? '',
-      category: data['category'] ?? '',
+      category:
+          movieCategoryFromString(data['category']) ?? MovieCategory.action,
       trailerUrl: data['trailerUrl'] ?? '',
       type: data['type'] == 'series' ? MovieType.series : MovieType.movie,
     );
@@ -44,7 +46,7 @@ class Movie {
       'description': description,
       'trailerUrl': trailerUrl,
       'imageUrl': imageUrl,
-      'category': category,
+      'category': category.name,
       'type': type == MovieType.series ? 'series' : 'movie',
     };
   }
