@@ -264,7 +264,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
               ),
             ),
           ),
-          FormAppBar(widget: widget),
+          FormAppBar(movieFormScreen: widget), // TODO
         ],
       ),
     );
