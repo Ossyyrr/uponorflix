@@ -1,13 +1,11 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:uponorflix/data/repository/movie_repository_impl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/domain/enum/movie_type.dart';
-import 'package:uponorflix/domain/interface/movie_repository.dart';
 import 'package:uponorflix/domain/model/movie.dart';
+import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
 
 void addTestMovie(BuildContext context) async {
   final movies = [
@@ -114,8 +112,6 @@ void addTestMovie(BuildContext context) async {
 
   final random = Random();
   final randomMovie = movies[random.nextInt(movies.length)];
-  // TODO move to bloc - Service
-  final MovieRepository firestoreService = MovieRepositoryImpl();
-  await firestoreService.addMovie(randomMovie);
+  context.read<MovieBloc>().add(AddMovie(randomMovie));
   Navigator.of(context).pop();
 }
