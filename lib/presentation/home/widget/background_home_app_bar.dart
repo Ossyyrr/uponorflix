@@ -8,13 +8,17 @@ class BackgroundHomeAppBar extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Image.asset('assets/sliver_bg.avif', fit: BoxFit.cover),
+        if (Theme.of(context).colorScheme.brightness == Brightness.light)
+          Image.asset('assets/sliver_bg.avif', fit: BoxFit.cover),
+        if (Theme.of(context).colorScheme.brightness == Brightness.dark)
+          Image.asset('assets/bg_appbar.avif', fit: BoxFit.cover),
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.black.withAlpha(60),
-                Theme.of(context).colorScheme.primary.withAlpha(170),
+                Colors.black87,
+                Colors.transparent,
+                Theme.of(context).colorScheme.primary.withAlpha(130),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
