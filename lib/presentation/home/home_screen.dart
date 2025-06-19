@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
+import 'package:uponorflix/presentation/home/empty_home_message.dart';
 import 'package:uponorflix/presentation/home/widget/add_movie_button.dart';
 import 'package:uponorflix/presentation/home/widget/category_section.dart';
 import 'package:uponorflix/presentation/home/widget/home_carousel.dart';
@@ -26,16 +27,14 @@ class HomeScreen extends StatelessWidget {
               return CustomScrollView(
                 slivers: [
                   HomeScreenAppBar(),
-                  const SliverToBoxAdapter(child: SizedBox(height: 32)),
-                  CategorySection(text: 'Favoritas del público'),
-                  const SliverToBoxAdapter(child: SizedBox(height: 16)),
-                  HomeCarousel(),
-                  const SliverToBoxAdapter(child: SizedBox(height: 16)),
                   if (state.filteredMovies.isEmpty)
-                    const SliverToBoxAdapter(
-                      child: Center(child: Text('No hay películas')),
-                    )
-                  else
+                    EmptyHomeMessage()
+                  else ...[
+                    const SliverToBoxAdapter(child: SizedBox(height: 32)),
+                    CategorySection(text: 'Favoritas del público'),
+                    const SliverToBoxAdapter(child: SizedBox(height: 16)),
+                    HomeCarousel(),
+                    const SliverToBoxAdapter(child: SizedBox(height: 16)),
                     for (final entry
                         in state.filteredMoviesByCategory.entries) ...[
                       CategorySection(
@@ -43,7 +42,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                       MovieList(movies: entry.value),
                     ],
-                  const SliverToBoxAdapter(child: SizedBox(height: 32)),
+                    const SliverToBoxAdapter(child: SizedBox(height: 32)),
+                  ],
                 ],
               );
             },
