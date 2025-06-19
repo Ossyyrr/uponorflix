@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/domain/enum/movie_type.dart';
+import 'package:uponorflix/domain/extension/string_extension.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/presentation/movieForm/util/add_test_movies.dart';
@@ -59,8 +60,8 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
     if (_formKey.currentState!.validate()) {
       final movie = Movie(
         id: widget.movie?.id ?? '',
-        title: _titleController.text,
-        description: _descriptionController.text,
+        title: _titleController.text.capitalizeFirst(),
+        description: _descriptionController.text.capitalizeFirst(),
         trailerUrl: _trailerUrlController.text,
         category: _selectedCategory!,
         type: _selectedType,
