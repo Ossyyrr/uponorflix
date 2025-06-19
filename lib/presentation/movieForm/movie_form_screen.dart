@@ -4,6 +4,7 @@ import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/domain/enum/movie_type.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 import 'package:uponorflix/presentation/movieForm/util/add_test_movies.dart';
+import 'package:uponorflix/presentation/movieForm/util/validators.dart';
 import 'package:uponorflix/presentation/movieForm/widget/form_app_bar.dart';
 import 'package:uponorflix/presentation/movieForm/widget/form_background.dart';
 import 'package:uponorflix/presentation/movieForm/widget/movie_type_choice_chips.dart';
@@ -118,9 +119,8 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                               color: colorScheme.primary,
                             ),
                           ),
-                          validator: (value) => value == null || value.isEmpty
-                              ? 'Ingrese un título'
-                              : null,
+                          validator: (value) =>
+                              validateNotEmpty(value, 'Ingrese un título'),
                         ),
                         const SizedBox(height: 16),
                         TextFormField(
@@ -138,9 +138,10 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                             ),
                           ),
                           maxLines: 3,
-                          validator: (value) => value == null || value.isEmpty
-                              ? 'Ingrese una descripción'
-                              : null,
+                          validator: (value) => validateNotEmpty(
+                            value,
+                            'Ingrese una descripción',
+                          ),
                         ),
                         const SizedBox(height: 16),
                         DropdownButtonFormField<MovieCategory>(
@@ -170,8 +171,10 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                               _selectedCategory = value;
                             });
                           },
-                          validator: (value) =>
-                              value == null ? 'Seleccione una categoría' : null,
+                          validator: (value) => validateMovieNotEmpty(
+                            value,
+                            'Seleccione una categoría',
+                          ),
                         ),
                         const SizedBox(height: 16),
                         MovieTypeChoiceChips(
@@ -197,20 +200,11 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                               color: colorScheme.primary,
                             ),
                           ),
-                          validator: (value) {
-                            // TODO llevar a otro archivo
-                            if (value == null || value.isEmpty) {
-                              return 'Ingrese un enlace de YouTube';
-                            }
-                            final youtubeRegex = RegExp(
-                              r'^(https?\:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$',
-                              caseSensitive: false,
-                            );
-                            if (!youtubeRegex.hasMatch(value)) {
-                              return 'Ingrese una URL válida de YouTube';
-                            }
-                            return null;
-                          },
+                          validator: (value) => validateYoutubeUrl(
+                            value,
+                            emptyMessage: 'Ingrese un enlace de YouTube',
+                            invalidMessage: 'Ingrese una URL válida de YouTube',
+                          ),
                         ),
                         const SizedBox(height: 32),
                         SizedBox(
