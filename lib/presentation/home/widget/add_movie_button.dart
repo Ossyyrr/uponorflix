@@ -11,11 +11,12 @@ class AddMovieButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () async {
+        final movieBloc = context.read<MovieBloc>();
         final movie = await Navigator.of(context).push<Movie>(
           MaterialPageRoute(builder: (_) => const MovieFormScreen()),
         );
         if (movie != null) {
-          context.read<MovieBloc>().add(AddMovie(movie));
+          movieBloc.add(AddMovie(movie));
         }
       },
       tooltip: 'Agregar película',

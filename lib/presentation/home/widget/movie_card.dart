@@ -11,11 +11,12 @@ class MovieCard extends StatelessWidget {
   const MovieCard({super.key, required this.movie});
 
   Future<void> _editMovie(BuildContext context) async {
+    final movieBloc = context.read<MovieBloc>();
     final updatedMovie = await Navigator.of(context).push<Movie>(
       MaterialPageRoute(builder: (_) => MovieFormScreen(movie: movie)),
     );
     if (updatedMovie == null) return;
-    context.read<MovieBloc>().add(UpdateMovie(updatedMovie));
+    movieBloc.add(UpdateMovie(updatedMovie));
   }
 
   void _deleteMovie(BuildContext context) {
