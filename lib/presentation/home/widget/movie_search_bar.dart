@@ -11,10 +11,12 @@ class MovieSearchBar extends StatefulWidget {
 
 class _MovieSearchBarState extends State<MovieSearchBar> {
   final FocusNode _focusNode = FocusNode();
+  late final TextEditingController _controller;
 
   @override
   void initState() {
     super.initState();
+    _controller = TextEditingController();
     _focusNode.addListener(() {
       setState(() {});
     });
@@ -23,6 +25,7 @@ class _MovieSearchBarState extends State<MovieSearchBar> {
   @override
   void dispose() {
     _focusNode.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -39,21 +42,19 @@ class _MovieSearchBarState extends State<MovieSearchBar> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
-
         width: _focusNode.hasFocus ? expandedWidth : collapsedWidth,
         child: Builder(
           builder: (context) {
             final searchQuery = context.select<MovieBloc, String>(
               (bloc) => bloc.state.searchQuery,
             );
+            _updateController(searchQuery);
+
             return TextField(
               focusNode: _focusNode,
               onChanged: (value) =>
                   context.read<MovieBloc>().add(ChangeSearchQuery(value)),
-              controller: TextEditingController(text: searchQuery)
-                ..selection = TextSelection.collapsed(
-                  offset: searchQuery.length,
-                ),
+              controller: _controller,
               style: TextStyle(color: Theme.of(context).colorScheme.primary),
               decoration: InputDecoration(
                 hintText: 'Buscar...',
@@ -88,6 +89,15 @@ class _MovieSearchBarState extends State<MovieSearchBar> {
         ),
       ),
     );
+  }
+
+  void _updateController(String searchQuery) {
+    if (_controller.text != searchQuery) {
+      _controller.text = searchQuery;
+      _controller.selection = TextSelection.collapsed(
+        offset: searchQuery.length,
+      );
+    }
   }
 
   OutlineInputBorder _border(BuildContext context) {
