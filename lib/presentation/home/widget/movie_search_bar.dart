@@ -53,8 +53,9 @@ class _MovieSearchBarState extends State<MovieSearchBar> {
 
             return TextField(
               focusNode: _focusNode,
-              onChanged: (value) =>
-                  context.read<MovieBloc>().add(ChangeSearchQuery(value)),
+              onChanged: (value) => context.read<MovieBloc>().add(
+                ChangeSearchQuery(value.trim()),
+              ),
               controller: _controller,
               style: TextStyle(color: Theme.of(context).colorScheme.primary),
               decoration: InputDecoration(
