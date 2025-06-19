@@ -17,9 +17,7 @@ class HomeCarousel extends StatelessWidget {
       builder: (context, state) {
         double value = 1.0;
         final movies = state.filteredMovies.toList();
-        if (movies.isEmpty) {
-          return const SliverToBoxAdapter(child: SizedBox.shrink());
-        }
+        if (movies.isEmpty) const SliverToBoxAdapter(child: SizedBox.shrink());
 
         return SliverToBoxAdapter(
           child: SizedBox(

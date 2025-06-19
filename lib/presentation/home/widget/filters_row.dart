@@ -94,7 +94,7 @@ class _CategoryDropdown extends StatelessWidget {
           (cat) => DropdownMenuItem<MovieCategory?>(
             value: cat,
             child: Text(
-              getCategoryLabel(loc, cat),
+              getCategoryLabel(context, cat),
               style: const TextStyle(color: Colors.white, fontSize: 12),
             ),
           ),

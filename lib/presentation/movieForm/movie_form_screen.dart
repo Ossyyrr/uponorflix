@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/domain/enum/movie_type.dart';
 import 'package:uponorflix/domain/model/movie.dart';
-import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/presentation/movieForm/util/add_test_movies.dart';
 import 'package:uponorflix/presentation/movieForm/widget/form_app_bar.dart';
 import 'package:uponorflix/presentation/movieForm/widget/form_background.dart';
@@ -70,7 +69,6 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final loc = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
@@ -163,7 +161,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                               .map(
                                 (cat) => DropdownMenuItem(
                                   value: cat,
-                                  child: Text(getCategoryLabel(loc, cat)),
+                                  child: Text(getCategoryLabel(context, cat)),
                                 ),
                               )
                               .toList(),

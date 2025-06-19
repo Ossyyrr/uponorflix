@@ -7,6 +7,7 @@ import 'package:uponorflix/presentation/home/widget/home_carousel.dart';
 import 'package:uponorflix/presentation/home/widget/home_screen_app_bar.dart';
 import 'package:uponorflix/presentation/home/widget/movie_list.dart';
 import 'package:uponorflix/presentation/utils/enum/screen_status.dart';
+import 'package:uponorflix/presentation/utils/movie_category_localization.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -26,6 +27,8 @@ class HomeScreen extends StatelessWidget {
                 slivers: [
                   HomeScreenAppBar(),
                   const SliverToBoxAdapter(child: SizedBox(height: 32)),
+                  CategorySection(text: 'Favoritas del público'),
+                  const SliverToBoxAdapter(child: SizedBox(height: 16)),
                   HomeCarousel(),
                   const SliverToBoxAdapter(child: SizedBox(height: 16)),
                   if (state.filteredMovies.isEmpty)
@@ -35,7 +38,9 @@ class HomeScreen extends StatelessWidget {
                   else
                     for (final entry
                         in state.filteredMoviesByCategory.entries) ...[
-                      CategorySection(entry: entry),
+                      CategorySection(
+                        text: getCategoryLabel(context, entry.key),
+                      ),
                       MovieList(movies: entry.value),
                     ],
                   const SliverToBoxAdapter(child: SizedBox(height: 32)),

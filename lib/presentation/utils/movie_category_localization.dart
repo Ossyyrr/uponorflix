@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
 
-String getCategoryLabel(AppLocalizations loc, MovieCategory cat) {
+String getCategoryLabel(BuildContext context, MovieCategory cat) {
+  final loc = AppLocalizations.of(context)!;
   switch (cat) {
     case MovieCategory.action:
       return loc.categoryAction;
