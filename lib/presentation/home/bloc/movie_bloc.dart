@@ -21,23 +21,27 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     on<UpdateMovie>(_onUpdateMovie);
     on<DeleteMovie>(_onDeleteMovie);
     on<MoviesUpdatedListener>(_onMoviesUpdatedListener);
-    on<ChangeCategoryFilter>(
-      (event, emit) => emit(
-        state.copyWith(
-          selectedCategory: event.category,
-          selectedType: state.selectedType,
-        ),
-      ),
-    );
-    on<ChangeTypeFilter>(
-      (event, emit) => emit(
-        state.copyWith(
-          selectedType: event.type,
-          selectedCategory: state.selectedCategory,
-        ),
-      ),
-    );
+    on<ChangeCategoryFilter>(_onChangeCategoryFilter);
+    on<ChangeTypeFilter>(onChangeTypeFilter);
+    on<ChangeSearchQuery>(onChangeSearchQuery);
   }
+
+  FutureOr<void> onChangeSearchQuery(event, emit) =>
+      emit(state.copyWith(searchQuery: event.query));
+
+  FutureOr<void> onChangeTypeFilter(event, emit) => emit(
+    state.copyWith(
+      selectedType: event.type,
+      selectedCategory: state.selectedCategory,
+    ),
+  );
+
+  FutureOr<void> _onChangeCategoryFilter(event, emit) => emit(
+    state.copyWith(
+      selectedCategory: event.category,
+      selectedType: state.selectedType,
+    ),
+  );
   void _onMoviesUpdatedListener(
     MoviesUpdatedListener event,
     Emitter<MovieState> emit,

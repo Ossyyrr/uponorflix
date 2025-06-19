@@ -6,6 +6,7 @@ class MovieState {
   final String? errorMessage;
   final MovieCategory? selectedCategory;
   final MovieType? selectedType;
+  final String searchQuery;
 
   const MovieState({
     this.status = ScreenStatus.initial,
@@ -13,6 +14,7 @@ class MovieState {
     this.errorMessage,
     this.selectedCategory,
     this.selectedType,
+    this.searchQuery = '',
   });
 
   List<Movie> get filteredMovies {
@@ -20,7 +22,10 @@ class MovieState {
       final matchesCategory =
           selectedCategory == null || movie.category == selectedCategory;
       final matchesType = selectedType == null || movie.type == selectedType;
-      return matchesCategory && matchesType;
+      final matchesQuery =
+          searchQuery.isEmpty ||
+          movie.title.toLowerCase().contains(searchQuery.toLowerCase());
+      return matchesCategory && matchesType && matchesQuery;
     }).toList();
   }
 
@@ -46,13 +51,15 @@ class MovieState {
     String? errorMessage,
     MovieCategory? selectedCategory,
     MovieType? selectedType,
+    String? searchQuery,
   }) {
     return MovieState(
       status: status ?? this.status,
       movies: movies ?? this.movies,
       errorMessage: errorMessage,
-      selectedCategory: selectedCategory, // need null for clean filters.
+      selectedCategory: selectedCategory, // Need null for clean filters.
       selectedType: selectedType,
+      searchQuery: searchQuery ?? this.searchQuery,
     );
   }
 }

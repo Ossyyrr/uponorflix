@@ -33,3 +33,8 @@ class ChangeTypeFilter extends MovieEvent {
   final MovieType? type;
   ChangeTypeFilter(this.type);
 }
+
+class ChangeSearchQuery extends MovieEvent {
+  final String query;
+  ChangeSearchQuery(this.query);
+}
