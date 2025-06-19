@@ -16,8 +16,10 @@ class HomeCarousel extends StatelessWidget {
     return BlocBuilder<MovieBloc, MovieState>(
       builder: (context, state) {
         double value = 1.0;
-        final movies = state.movies.toList();
-        if (movies.isEmpty) return const SizedBox.shrink();
+        final movies = state.filteredMovies.toList();
+        if (movies.isEmpty) {
+          return const SliverToBoxAdapter(child: SizedBox.shrink());
+        }
 
         return SliverToBoxAdapter(
           child: SizedBox(
