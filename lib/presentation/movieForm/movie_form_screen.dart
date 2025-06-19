@@ -200,6 +200,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                             ),
                           ),
                           validator: (value) {
+                            // TODO llevar a otro archivo
                             if (value == null || value.isEmpty) {
                               return 'Ingrese un enlace de YouTube';
                             }

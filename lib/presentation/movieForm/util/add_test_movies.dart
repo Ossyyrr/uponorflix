@@ -52,7 +52,7 @@ void addTestMovie(BuildContext context) async {
       description:
           'Un ex-marine parapléjico es enviado a la luna Pandora en una misión única, pero se debate entre seguir órdenes y proteger el mundo que siente como suyo.',
       trailerUrl:
-          'https://www.youtube.com/watch?v=5PSNL1qE6VY&ab_channel=20thCenturyStudiosEspaña',
+          'https://www.youtube.com/watch?v=CpXJHWSXJW0&ab_channel=CineFantasia',
       category: MovieCategory.fantasy,
       type: MovieType.movie,
     ),
