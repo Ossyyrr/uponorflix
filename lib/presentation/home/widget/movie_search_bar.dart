@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
 
 class MovieSearchBar extends StatefulWidget {
@@ -57,7 +58,7 @@ class _MovieSearchBarState extends State<MovieSearchBar> {
               controller: _controller,
               style: TextStyle(color: Theme.of(context).colorScheme.primary),
               decoration: InputDecoration(
-                hintText: 'Buscar...',
+                hintText: AppLocalizations.of(context)!.searchHint,
                 hintStyle: TextStyle(
                   color: Theme.of(context).colorScheme.primary.withAlpha(150),
                 ),

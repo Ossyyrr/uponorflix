@@ -5,6 +5,7 @@ import 'package:uponorflix/domain/enum/movie_type.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
 import 'package:uponorflix/presentation/utils/movie_category_localization.dart';
+import 'package:uponorflix/presentation/utils/movie_type_localization.dart';
 
 class FiltersRow extends StatelessWidget {
   final MovieState state;
@@ -41,23 +42,18 @@ class _TypeDropdown extends StatelessWidget {
       items: [
         DropdownMenuItem<MovieType?>(
           value: null,
-          child: const Text(
-            'Tipo',
-            style: TextStyle(color: Colors.white, fontSize: 10),
+          child: Text(
+            AppLocalizations.of(context)!.type,
+            style: TextStyle(color: Colors.white, fontSize: 14),
           ),
         ),
-        DropdownMenuItem<MovieType?>(
-          value: MovieType.movie,
-          child: const Text(
-            'Películas',
-            style: TextStyle(color: Colors.white, fontSize: 10),
-          ),
-        ),
-        DropdownMenuItem<MovieType?>(
-          value: MovieType.series,
-          child: const Text(
-            'Series',
-            style: TextStyle(color: Colors.white, fontSize: 10),
+        ...MovieType.values.map(
+          (type) => DropdownMenuItem<MovieType?>(
+            value: type,
+            child: Text(
+              getTipeLabel(context, type),
+              style: const TextStyle(color: Colors.white, fontSize: 14),
+            ),
           ),
         ),
       ],
@@ -86,8 +82,8 @@ class _CategoryDropdown extends StatelessWidget {
         DropdownMenuItem<MovieCategory?>(
           value: null,
           child: Text(
-            'Categorías',
-            style: const TextStyle(color: Colors.white, fontSize: 10),
+            loc.categories,
+            style: const TextStyle(color: Colors.white, fontSize: 14),
           ),
         ),
         ...MovieCategory.values.map(
@@ -95,7 +91,7 @@ class _CategoryDropdown extends StatelessWidget {
             value: cat,
             child: Text(
               getCategoryLabel(context, cat),
-              style: const TextStyle(color: Colors.white, fontSize: 12),
+              style: const TextStyle(color: Colors.white, fontSize: 14),
             ),
           ),
         ),

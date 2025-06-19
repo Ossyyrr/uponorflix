@@ -1,0 +1,1 @@
+enum MovieCardAction { edit, delete }

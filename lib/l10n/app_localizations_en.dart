@@ -9,6 +9,72 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get title => 'Title';
+
+  @override
+  String get titleRequired => 'Enter a title';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get descriptionRequired => 'Enter a description';
+
+  @override
+  String get category => 'Category';
+
+  @override
+  String get categoryRequired => 'Select a category';
+
+  @override
+  String get youtubeLabel => 'YouTube link (trailer)';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get addTestMovies => 'Add test movies';
+
+  @override
+  String get youtubeLinkRequired => 'Enter a YouTube link';
+
+  @override
+  String get youtubeLinkInvalid => 'Enter a valid YouTube URL';
+
+  @override
+  String get publicFavorites => 'Public favorites';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get searchHint => 'Search...';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get series => 'Series';
+
+  @override
+  String get movies => 'Movies';
+
+  @override
+  String get type => 'Type';
+
+  @override
+  String get categories => 'Categories';
+
+  @override
+  String get noMovies => 'No movies';
+
+  @override
+  String get addMovie => 'Add movie';
+
+  @override
   String get language => 'Language';
 
   @override

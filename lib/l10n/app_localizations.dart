@@ -98,6 +98,138 @@ abstract class AppLocalizations {
     Locale('es'),
   ];
 
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// No description provided for @titleRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a title'**
+  String get titleRequired;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @descriptionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a description'**
+  String get descriptionRequired;
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// No description provided for @categoryRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a category'**
+  String get categoryRequired;
+
+  /// No description provided for @youtubeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'YouTube link (trailer)'**
+  String get youtubeLabel;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @addTestMovies.
+  ///
+  /// In en, this message translates to:
+  /// **'Add test movies'**
+  String get addTestMovies;
+
+  /// No description provided for @youtubeLinkRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a YouTube link'**
+  String get youtubeLinkRequired;
+
+  /// No description provided for @youtubeLinkInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid YouTube URL'**
+  String get youtubeLinkInvalid;
+
+  /// No description provided for @publicFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Public favorites'**
+  String get publicFavorites;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search...'**
+  String get searchHint;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @series.
+  ///
+  /// In en, this message translates to:
+  /// **'Series'**
+  String get series;
+
+  /// No description provided for @movies.
+  ///
+  /// In en, this message translates to:
+  /// **'Movies'**
+  String get movies;
+
+  /// No description provided for @type.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get type;
+
+  /// No description provided for @categories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get categories;
+
+  /// No description provided for @noMovies.
+  ///
+  /// In en, this message translates to:
+  /// **'No movies'**
+  String get noMovies;
+
+  /// No description provided for @addMovie.
+  ///
+  /// In en, this message translates to:
+  /// **'Add movie'**
+  String get addMovie;
+
   /// No description provided for @language.
   ///
   /// In en, this message translates to:

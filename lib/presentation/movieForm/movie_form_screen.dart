@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:uponorflix/domain/enum/movie_category.dart';
 import 'package:uponorflix/domain/enum/movie_type.dart';
 import 'package:uponorflix/domain/model/movie.dart';
+import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/presentation/movieForm/util/add_test_movies.dart';
 import 'package:uponorflix/presentation/movieForm/util/validators.dart';
 import 'package:uponorflix/presentation/movieForm/widget/form_app_bar.dart';
@@ -71,7 +72,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-
+    final loc = AppLocalizations.of(context)!;
     return Scaffold(
       body: Stack(
         children: [
@@ -108,7 +109,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                         TextFormField(
                           controller: _titleController,
                           decoration: InputDecoration(
-                            labelText: 'Título',
+                            labelText: loc.title,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
@@ -120,13 +121,13 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                             ),
                           ),
                           validator: (value) =>
-                              validateNotEmpty(value, 'Ingrese un título'),
+                              validateNotEmpty(value, loc.titleRequired),
                         ),
                         const SizedBox(height: 16),
                         TextFormField(
                           controller: _descriptionController,
                           decoration: InputDecoration(
-                            labelText: 'Descripción',
+                            labelText: loc.description,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
@@ -138,16 +139,14 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                             ),
                           ),
                           maxLines: 3,
-                          validator: (value) => validateNotEmpty(
-                            value,
-                            'Ingrese una descripción',
-                          ),
+                          validator: (value) =>
+                              validateNotEmpty(value, loc.descriptionRequired),
                         ),
                         const SizedBox(height: 16),
                         DropdownButtonFormField<MovieCategory>(
                           value: _selectedCategory,
                           decoration: InputDecoration(
-                            labelText: 'Categoría',
+                            labelText: loc.category,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
@@ -173,7 +172,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                           },
                           validator: (value) => validateMovieNotEmpty(
                             value,
-                            'Seleccione una categoría',
+                            loc.categoryRequired,
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -189,7 +188,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                         TextFormField(
                           controller: _trailerUrlController,
                           decoration: InputDecoration(
-                            labelText: 'Enlace de YouTube (tráiler)',
+                            labelText: loc.youtubeLabel,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
@@ -202,8 +201,8 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                           ),
                           validator: (value) => validateYoutubeUrl(
                             value,
-                            emptyMessage: 'Ingrese un enlace de YouTube',
-                            invalidMessage: 'Ingrese una URL válida de YouTube',
+                            emptyMessage: loc.youtubeLinkRequired,
+                            invalidMessage: loc.youtubeLinkInvalid,
                           ),
                         ),
                         const SizedBox(height: 32),
@@ -213,8 +212,8 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                           child: ElevatedButton.icon(
                             onPressed: _save,
                             icon: const Icon(Icons.save, size: 28),
-                            label: const Text(
-                              'Guardar',
+                            label: Text(
+                              loc.save,
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -239,7 +238,7 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                             child: ElevatedButton.icon(
                               onPressed: () => addTestMovie(context),
                               icon: const Icon(Icons.bug_report),
-                              label: const Text('Agregar películas de test'),
+                              label: Text(loc.addTestMovies),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.orange,
                                 foregroundColor: Colors.white,

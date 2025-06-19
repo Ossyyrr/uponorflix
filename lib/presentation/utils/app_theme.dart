@@ -18,7 +18,7 @@ class AppTheme {
       surface: Color(0xFFF5F5F5),
       onSurface: Color(0xFF212121),
       surfaceBright: Color(0xFFE3F2FD),
-      outline: Color(0xFF90A4AE),
+      outline: Colors.black87,
     );
 
     return ThemeData.light().copyWith(
@@ -36,7 +36,7 @@ class AppTheme {
       surface: Color(0xFF121212),
       onSurface: Color(0xFFF5F5F5),
       surfaceBright: Color(0xFF263238),
-      outline: Color(0xFFB0BEC5),
+      outline: Colors.black87,
     );
 
     return ThemeData.dark().copyWith(

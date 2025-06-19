@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uponorflix/domain/model/movie.dart';
+import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/presentation/detail/detail_screen.dart';
 import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
 import 'package:uponorflix/presentation/movieForm/movie_form_screen.dart';
+import 'package:uponorflix/presentation/utils/enum/movie_card_action.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -107,37 +109,37 @@ class MovieCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  PopupMenuButton<String>(
+                  PopupMenuButton<MovieCardAction>(
                     icon: const Icon(Icons.more_vert, color: Colors.white),
                     color: Colors.grey[900],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                     onSelected: (value) {
-                      if (value == 'edit') {
+                      if (value == MovieCardAction.edit) {
                         _editMovie(context);
-                      } else if (value == 'delete') {
+                      } else if (value == MovieCardAction.delete) {
                         _deleteMovie(context);
                       }
                     },
                     itemBuilder: (context) => [
                       PopupMenuItem(
-                        value: 'edit',
+                        value: MovieCardAction.edit,
                         child: Row(
-                          children: const [
+                          children: [
                             Icon(Icons.edit, color: Colors.white70, size: 20),
                             SizedBox(width: 8),
                             Text(
-                              'Editar',
+                              AppLocalizations.of(context)!.edit,
                               style: TextStyle(color: Colors.white70),
                             ),
                           ],
                         ),
                       ),
                       PopupMenuItem(
-                        value: 'delete',
+                        value: MovieCardAction.delete,
                         child: Row(
-                          children: const [
+                          children: [
                             Icon(
                               Icons.delete,
                               color: Colors.redAccent,
@@ -145,7 +147,7 @@ class MovieCard extends StatelessWidget {
                             ),
                             SizedBox(width: 8),
                             Text(
-                              'Eliminar',
+                              AppLocalizations.of(context)!.delete,
                               style: TextStyle(color: Colors.redAccent),
                             ),
                           ],

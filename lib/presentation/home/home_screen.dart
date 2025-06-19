@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uponorflix/l10n/app_localizations.dart';
 import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
 import 'package:uponorflix/presentation/home/widget/add_movie_button.dart';
 import 'package:uponorflix/presentation/home/widget/category_section.dart';
@@ -25,7 +26,11 @@ class HomeScreen extends StatelessWidget {
             return state.status.when(
               initial: () => const Center(child: CircularProgressIndicator()),
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: () => Center(child: Text(state.errorMessage ?? 'Error')),
+              error: () => Center(
+                child: Text(
+                  state.errorMessage ?? AppLocalizations.of(context)!.error,
+                ),
+              ),
               success: () {
                 return CustomScrollView(
                   slivers: [
@@ -34,7 +39,9 @@ class HomeScreen extends StatelessWidget {
                       EmptyHomeMessage()
                     else ...[
                       const SliverToBoxAdapter(child: SizedBox(height: 32)),
-                      CategorySection(text: 'Favoritas del público'),
+                      CategorySection(
+                        text: AppLocalizations.of(context)!.publicFavorites,
+                      ),
                       const SliverToBoxAdapter(child: SizedBox(height: 16)),
                       HomeCarousel(),
                       const SliverToBoxAdapter(child: SizedBox(height: 16)),
