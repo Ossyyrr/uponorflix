@@ -1,4 +1,7 @@
 {
+    "selectLanguage": "Selecciona el idioma",
+    "enableDarkMode": "Activar modo oscuro",
+    "disableDarkMode": "Desactivar modo oscuro",
     "title": "Título",
     "titleRequired": "Ingrese un título",
     "description": "Descripción",

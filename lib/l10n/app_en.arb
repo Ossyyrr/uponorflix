@@ -1,4 +1,7 @@
 {
+    "selectLanguage": "Select language",
+    "enableDarkMode": "Enable dark mode",
+    "disableDarkMode": "Disable dark mode",
     "title": "Title",
     "titleRequired": "Enter a title",
     "description": "Description",

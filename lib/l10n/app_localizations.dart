@@ -98,6 +98,24 @@ abstract class AppLocalizations {
     Locale('es'),
   ];
 
+  /// No description provided for @selectLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select language'**
+  String get selectLanguage;
+
+  /// No description provided for @enableDarkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable dark mode'**
+  String get enableDarkMode;
+
+  /// No description provided for @disableDarkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable dark mode'**
+  String get disableDarkMode;
+
   /// No description provided for @title.
   ///
   /// In en, this message translates to:

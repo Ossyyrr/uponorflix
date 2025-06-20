@@ -22,6 +22,7 @@ class LanguageSettings extends StatelessWidget {
           AppLocalizations.of(context)!.language,
           style: const TextStyle(fontSize: 18),
         ),
+
         BlocBuilder<LanguageBloc, Locale>(
           builder: (context, locale) {
             final languageMap = getLocalizedLanguageMap(context);
@@ -36,24 +37,28 @@ class LanguageSettings extends StatelessWidget {
                 )
                 .key;
 
-            return DropdownButton<String>(
-              value: selectedLanguage,
-              onChanged: (String? newValue) {
-                if (newValue != null) {
-                  Locale newLocale = languageMap[newValue]!;
-                  context.read<LanguageBloc>().add(
-                    ChangeLanguageEvent(newLocale),
+            return Semantics(
+              label: AppLocalizations.of(context)!.language,
+              hint: AppLocalizations.of(context)!.selectLanguage,
+              child: DropdownButton<String>(
+                value: selectedLanguage,
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    Locale newLocale = languageMap[newValue]!;
+                    context.read<LanguageBloc>().add(
+                      ChangeLanguageEvent(newLocale),
+                    );
+                  }
+                },
+                items: languageMap.keys.map<DropdownMenuItem<String>>((
+                  String value,
+                ) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
                   );
-                }
-              },
-              items: languageMap.keys.map<DropdownMenuItem<String>>((
-                String value,
-              ) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
+                }).toList(),
+              ),
             );
           },
         ),

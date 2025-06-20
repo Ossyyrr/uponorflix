@@ -9,6 +9,15 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get selectLanguage => 'Select language';
+
+  @override
+  String get enableDarkMode => 'Enable dark mode';
+
+  @override
+  String get disableDarkMode => 'Disable dark mode';
+
+  @override
   String get title => 'Title';
 
   @override
