@@ -9,6 +9,9 @@ class Result<T> {
 
   Result.error(this.error) : status = ResultStatus.error, data = null;
 
+  bool get isSuccess => status == ResultStatus.success;
+  bool get isError => status == ResultStatus.error;
+
   R when<R>({
     required R Function(T? data) success,
     required R Function(String? error) error,

@@ -4,7 +4,10 @@ import 'package:uponorflix/domain/model/movie.dart';
 import 'package:uponorflix/domain/result.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final FirebaseFirestore _db;
+
+  MovieRepositoryImpl({FirebaseFirestore? db})
+    : _db = db ?? FirebaseFirestore.instance;
 
   @override
   Future<Result<void>> addMovie(Movie movie) async {

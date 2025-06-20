@@ -77,7 +77,7 @@ void addTestMovie(BuildContext context) async {
       description:
           'Una comedia sobre la vida diaria de los empleados de una oficina de ventas de papel en Scranton.',
       trailerUrl:
-          'https://www.youtube.com/watch?v=Vmb1tqYqyII&ab_channel=TheOffice',
+          'https://www.youtube.com/watch?v=tNcDHWpselE&ab_channel=MaxBrasil',
       category: MovieCategory.comedy,
       type: MovieType.series,
     ),
