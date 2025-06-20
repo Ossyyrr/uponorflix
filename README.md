@@ -17,7 +17,7 @@ Uponorflix is a prototype for managing and viewing movies and series, developed 
    ```
 3. Run for generate AppLocalization:
    ```sh
-  flutter run build_runner build
+   flutter run build_runner build
    ```
 4. Run the app:
 ```sh
