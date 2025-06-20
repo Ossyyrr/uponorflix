@@ -243,7 +243,10 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
                               child: ElevatedButton.icon(
                                 onPressed: () => addTestMovie(context),
                                 icon: const Icon(Icons.bug_report),
-                                label: Text(loc.addTestMovies),
+                                label: Text(
+                                  loc.addTestMovies,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.orange,
                                   foregroundColor: Colors.white,

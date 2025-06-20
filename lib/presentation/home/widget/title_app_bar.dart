@@ -7,6 +7,7 @@ class TitleAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'UponorFlix',
+      overflow: TextOverflow.ellipsis,
       style: const TextStyle(
         fontSize: 28,
         fontWeight: FontWeight.bold,

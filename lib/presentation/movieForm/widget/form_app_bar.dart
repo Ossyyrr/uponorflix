@@ -32,6 +32,8 @@ class FormAppBar extends StatelessWidget {
           child: Center(
             child: Text(
               movie == null ? '🎬 Nueva Película' : '✏️ Editar Película',
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: colorScheme.onPrimary,
                 fontWeight: FontWeight.w900,

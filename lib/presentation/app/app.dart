@@ -17,15 +17,29 @@ class App extends StatelessWidget {
         builder: (context, themeState) {
           return BlocBuilder<LanguageBloc, Locale>(
             builder: (context, locale) {
-              return MaterialApp(
-                title: 'UponorFlix',
-                themeMode: themeState.themeMode,
-                theme: AppTheme.lightTheme(),
-                darkTheme: AppTheme.darkTheme(),
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
-                supportedLocales: AppLocalizations.supportedLocales,
-                locale: locale,
-                home: const HomeScreen(),
+              return Builder(
+                builder: (context) {
+                  final mediaQuery = MediaQuery.of(context);
+                  return MediaQuery(
+                    data: mediaQuery.copyWith(
+                      textScaler: mediaQuery.textScaler.clamp(
+                        minScaleFactor: 1.0,
+                        maxScaleFactor: 1.5,
+                      ),
+                    ),
+                    child: MaterialApp(
+                      title: 'UponorFlix',
+                      themeMode: themeState.themeMode,
+                      theme: AppTheme.lightTheme(),
+                      darkTheme: AppTheme.darkTheme(),
+                      localizationsDelegates:
+                          AppLocalizations.localizationsDelegates,
+                      supportedLocales: AppLocalizations.supportedLocales,
+                      locale: locale,
+                      home: const HomeScreen(),
+                    ),
+                  );
+                },
               );
             },
           );
