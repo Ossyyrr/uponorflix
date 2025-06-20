@@ -78,178 +78,183 @@ class _MovieFormScreenState extends State<MovieFormScreen> {
       body: Stack(
         children: [
           FormBackground(),
+
           SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 150,
-                left: 24,
-                right: 24,
-                bottom: 24,
-              ),
-              child: Container(
-                constraints: const BoxConstraints(maxWidth: 500),
-                decoration: BoxDecoration(
-                  color: colorScheme.surface.withAlpha(242),
-                  borderRadius: BorderRadius.circular(32),
-                  border: Border.all(color: Colors.white, width: 6),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withAlpha(77),
-                      blurRadius: 32,
-                      offset: const Offset(0, 16),
-                    ),
-                  ],
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 150,
+                  left: 24,
+                  right: 24,
+                  bottom: 24,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TextFormField(
-                          controller: _titleController,
-                          decoration: InputDecoration(
-                            labelText: loc.title,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            filled: true,
-                            fillColor: colorScheme.surfaceBright,
-                            prefixIcon: Icon(
-                              Icons.movie,
-                              color: colorScheme.primary,
-                            ),
-                          ),
-                          validator: (value) =>
-                              validateNotEmpty(value, loc.titleRequired),
-                        ),
-                        const SizedBox(height: 16),
-                        TextFormField(
-                          controller: _descriptionController,
-                          decoration: InputDecoration(
-                            labelText: loc.description,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            filled: true,
-                            fillColor: colorScheme.surfaceBright,
-                            prefixIcon: Icon(
-                              Icons.description,
-                              color: colorScheme.primary,
-                            ),
-                          ),
-                          maxLines: 3,
-                          validator: (value) =>
-                              validateNotEmpty(value, loc.descriptionRequired),
-                        ),
-                        const SizedBox(height: 16),
-                        DropdownButtonFormField<MovieCategory>(
-                          value: _selectedCategory,
-                          decoration: InputDecoration(
-                            labelText: loc.category,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            filled: true,
-                            fillColor: colorScheme.surfaceBright,
-                            prefixIcon: Icon(
-                              Icons.category,
-                              color: colorScheme.primary,
-                            ),
-                          ),
-                          items: MovieCategory.values
-                              .map(
-                                (cat) => DropdownMenuItem(
-                                  value: cat,
-                                  child: Text(getCategoryLabel(context, cat)),
-                                ),
-                              )
-                              .toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              _selectedCategory = value;
-                            });
-                          },
-                          validator: (value) => validateMovieNotEmpty(
-                            value,
-                            loc.categoryRequired,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        MovieTypeChoiceChips(
-                          selectedType: _selectedType,
-                          onTypeChanged: (type) {
-                            setState(() {
-                              _selectedType = type;
-                            });
-                          },
-                        ),
-                        const SizedBox(height: 16),
-                        TextFormField(
-                          controller: _trailerUrlController,
-                          decoration: InputDecoration(
-                            labelText: loc.youtubeLabel,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            filled: true,
-                            fillColor: colorScheme.surfaceBright,
-                            prefixIcon: Icon(
-                              Icons.link,
-                              color: colorScheme.primary,
-                            ),
-                          ),
-                          validator: (value) => validateYoutubeUrl(
-                            value,
-                            emptyMessage: loc.youtubeLinkRequired,
-                            invalidMessage: loc.youtubeLinkInvalid,
-                          ),
-                        ),
-                        const SizedBox(height: 32),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 56,
-                          child: ElevatedButton.icon(
-                            onPressed: _save,
-                            icon: const Icon(Icons.save, size: 28),
-                            label: Text(
-                              loc.save,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: colorScheme.primary,
-                              foregroundColor: colorScheme.onPrimary,
-                              elevation: 8,
-                              shape: RoundedRectangleBorder(
+                child: Container(
+                  constraints: const BoxConstraints(maxWidth: 500),
+                  decoration: BoxDecoration(
+                    color: colorScheme.surface.withAlpha(242),
+                    borderRadius: BorderRadius.circular(32),
+                    border: Border.all(color: Colors.white, width: 6),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withAlpha(77),
+                        blurRadius: 32,
+                        offset: const Offset(0, 16),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          TextFormField(
+                            controller: _titleController,
+                            decoration: InputDecoration(
+                              labelText: loc.title,
+                              border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16),
                               ),
-                              shadowColor: colorScheme.primary.withAlpha(77),
+                              filled: true,
+                              fillColor: colorScheme.surfaceBright,
+                              prefixIcon: Icon(
+                                Icons.movie,
+                                color: colorScheme.primary,
+                              ),
+                            ),
+                            validator: (value) =>
+                                validateNotEmpty(value, loc.titleRequired),
+                          ),
+                          const SizedBox(height: 16),
+                          TextFormField(
+                            controller: _descriptionController,
+                            decoration: InputDecoration(
+                              labelText: loc.description,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              filled: true,
+                              fillColor: colorScheme.surfaceBright,
+                              prefixIcon: Icon(
+                                Icons.description,
+                                color: colorScheme.primary,
+                              ),
+                            ),
+                            maxLines: 3,
+                            validator: (value) => validateNotEmpty(
+                              value,
+                              loc.descriptionRequired,
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 16),
-                        if (kDebugMode)
+                          const SizedBox(height: 16),
+                          DropdownButtonFormField<MovieCategory>(
+                            value: _selectedCategory,
+                            decoration: InputDecoration(
+                              labelText: loc.category,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              filled: true,
+                              fillColor: colorScheme.surfaceBright,
+                              prefixIcon: Icon(
+                                Icons.category,
+                                color: colorScheme.primary,
+                              ),
+                            ),
+                            items: MovieCategory.values
+                                .map(
+                                  (cat) => DropdownMenuItem(
+                                    value: cat,
+                                    child: Text(getCategoryLabel(context, cat)),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedCategory = value;
+                              });
+                            },
+                            validator: (value) => validateMovieNotEmpty(
+                              value,
+                              loc.categoryRequired,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          MovieTypeChoiceChips(
+                            selectedType: _selectedType,
+                            onTypeChanged: (type) {
+                              setState(() {
+                                _selectedType = type;
+                              });
+                            },
+                          ),
+                          const SizedBox(height: 16),
+                          TextFormField(
+                            controller: _trailerUrlController,
+                            decoration: InputDecoration(
+                              labelText: loc.youtubeLabel,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              filled: true,
+                              fillColor: colorScheme.surfaceBright,
+                              prefixIcon: Icon(
+                                Icons.link,
+                                color: colorScheme.primary,
+                              ),
+                            ),
+                            validator: (value) => validateYoutubeUrl(
+                              value,
+                              emptyMessage: loc.youtubeLinkRequired,
+                              invalidMessage: loc.youtubeLinkInvalid,
+                            ),
+                          ),
+                          const SizedBox(height: 32),
                           SizedBox(
                             width: double.infinity,
-                            height: 48,
+                            height: 56,
                             child: ElevatedButton.icon(
-                              onPressed: () => addTestMovie(context),
-                              icon: const Icon(Icons.bug_report),
-                              label: Text(loc.addTestMovies),
+                              onPressed: _save,
+                              icon: const Icon(Icons.save, size: 28),
+                              label: Text(
+                                loc.save,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.orange,
-                                foregroundColor: Colors.white,
+                                backgroundColor: colorScheme.primary,
+                                foregroundColor: colorScheme.onPrimary,
+                                elevation: 8,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(16),
                                 ),
+                                shadowColor: colorScheme.primary.withAlpha(77),
                               ),
                             ),
                           ),
-                      ],
+                          const SizedBox(height: 16),
+                          if (kDebugMode)
+                            SizedBox(
+                              width: double.infinity,
+                              height: 48,
+                              child: ElevatedButton.icon(
+                                onPressed: () => addTestMovie(context),
+                                icon: const Icon(Icons.bug_report),
+                                label: Text(loc.addTestMovies),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.orange,
+                                  foregroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
