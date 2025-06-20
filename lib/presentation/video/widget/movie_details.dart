@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:uponorflix/presentation/detail/detail_screen.dart';
+import 'package:uponorflix/presentation/video/video_screen.dart';
 
 class MovieDetails extends StatelessWidget {
   const MovieDetails({super.key, required this.widget});
 
-  final DetailScreen widget;
+  final VideoScreen widget;
 
   @override
   Widget build(BuildContext context) {

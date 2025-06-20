@@ -212,6 +212,12 @@ abstract class AppLocalizations {
   /// **'Delete'**
   String get delete;
 
+  /// No description provided for @movieDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Movie deleted'**
+  String get movieDeleted;
+
   /// No description provided for @series.
   ///
   /// In en, this message translates to:

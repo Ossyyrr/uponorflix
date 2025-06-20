@@ -66,6 +66,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get delete => 'Eliminar';
 
   @override
+  String get movieDeleted => 'Película eliminada';
+
+  @override
   String get series => 'Series';
 
   @override

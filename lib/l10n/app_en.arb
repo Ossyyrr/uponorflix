@@ -18,6 +18,7 @@
     "searchHint": "Search...",
     "edit": "Edit",
     "delete": "Delete",
+    "movieDeleted": "Movie deleted",
     "series": "Series",
     "movies": "Movies",
     "type": "Type",

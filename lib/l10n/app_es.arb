@@ -18,6 +18,7 @@
     "searchHint": "Buscar...",
     "edit": "Editar",
     "delete": "Eliminar",
+    "movieDeleted": "Película eliminada",
     "series": "Series",
     "movies": "Películas",
     "type": "Tipo",

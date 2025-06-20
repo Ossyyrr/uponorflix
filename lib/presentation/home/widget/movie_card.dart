@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uponorflix/domain/model/movie.dart';
 import 'package:uponorflix/l10n/app_localizations.dart';
-import 'package:uponorflix/presentation/detail/detail_screen.dart';
 import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
 import 'package:uponorflix/presentation/movieForm/movie_form_screen.dart';
 import 'package:uponorflix/presentation/utils/enum/movie_card_action.dart';
+import 'package:uponorflix/presentation/video/video_screen.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -23,12 +23,22 @@ class MovieCard extends StatelessWidget {
 
   void _deleteMovie(BuildContext context) {
     context.read<MovieBloc>().add(DeleteMovie(movie.id));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          AppLocalizations.of(context)!.movieDeleted,
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        duration: const Duration(seconds: 2),
+      ),
+    );
   }
 
   void _openDetail(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => DetailScreen(movie: movie)),
+      MaterialPageRoute(builder: (_) => VideoScreen(movie: movie)),
     );
   }
 

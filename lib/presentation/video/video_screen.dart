@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:uponorflix/domain/model/movie.dart';
-import 'package:uponorflix/presentation/detail/widget/movie_details.dart';
+import 'package:uponorflix/presentation/video/widget/movie_details.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class DetailScreen extends StatefulWidget {
+class VideoScreen extends StatefulWidget {
   final Movie movie;
-  const DetailScreen({super.key, required this.movie});
+  const VideoScreen({super.key, required this.movie});
 
   @override
-  State<DetailScreen> createState() => _DetailScreenState();
+  State<VideoScreen> createState() => _VideoScreenState();
 }
 
-class _DetailScreenState extends State<DetailScreen> {
+class _VideoScreenState extends State<VideoScreen> {
   late YoutubePlayerController _controller;
 
   @override

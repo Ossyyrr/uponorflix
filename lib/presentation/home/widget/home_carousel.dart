@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:uponorflix/presentation/detail/detail_screen.dart';
 import 'package:uponorflix/presentation/home/bloc/movie_bloc.dart';
+import 'package:uponorflix/presentation/video/video_screen.dart';
 
 class HomeCarousel extends StatelessWidget {
   HomeCarousel({super.key});
@@ -46,8 +46,7 @@ class HomeCarousel extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) =>
-                                  DetailScreen(movie: movies[index]),
+                              builder: (_) => VideoScreen(movie: movies[index]),
                             ),
                           );
                         },
