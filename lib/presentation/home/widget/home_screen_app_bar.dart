@@ -13,7 +13,10 @@ class HomeScreenAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MovieBloc, MovieState>(
       builder: (context, state) {
-        final double expandedHeight = 220;
+        final double expandedHeight =
+            MediaQuery.of(context).orientation == Orientation.landscape
+            ? 100
+            : 220;
 
         return SliverAppBar(
           backgroundColor: Theme.of(context).colorScheme.primary,

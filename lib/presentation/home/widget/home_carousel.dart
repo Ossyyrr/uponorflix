@@ -21,7 +21,9 @@ class HomeCarousel extends StatelessWidget {
 
         return SliverToBoxAdapter(
           child: SizedBox(
-            height: 100,
+            height: MediaQuery.of(context).orientation == Orientation.landscape
+                ? 200
+                : 100,
             child: PageView.builder(
               controller: _controller,
               itemCount: movies.length,

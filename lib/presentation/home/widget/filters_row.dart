@@ -12,6 +12,9 @@ class FiltersRow extends StatelessWidget {
 
   const FiltersRow({super.key, required this.state});
 
+  static TextStyle getDropdownTextStyle() =>
+      TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold);
+
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
@@ -44,7 +47,7 @@ class _TypeDropdown extends StatelessWidget {
           value: null,
           child: Text(
             AppLocalizations.of(context)!.type,
-            style: TextStyle(color: Colors.white, fontSize: 14),
+            style: FiltersRow.getDropdownTextStyle(),
           ),
         ),
         ...MovieType.values.map(
@@ -52,7 +55,7 @@ class _TypeDropdown extends StatelessWidget {
             value: type,
             child: Text(
               getTipeLabel(context, type),
-              style: const TextStyle(color: Colors.white, fontSize: 14),
+              style: FiltersRow.getDropdownTextStyle(),
             ),
           ),
         ),
@@ -81,17 +84,14 @@ class _CategoryDropdown extends StatelessWidget {
       items: [
         DropdownMenuItem<MovieCategory?>(
           value: null,
-          child: Text(
-            loc.categories,
-            style: const TextStyle(color: Colors.white, fontSize: 14),
-          ),
+          child: Text(loc.categories, style: FiltersRow.getDropdownTextStyle()),
         ),
         ...MovieCategory.values.map(
           (cat) => DropdownMenuItem<MovieCategory?>(
             value: cat,
             child: Text(
               getCategoryLabel(context, cat),
-              style: const TextStyle(color: Colors.white, fontSize: 14),
+              style: FiltersRow.getDropdownTextStyle(),
             ),
           ),
         ),
