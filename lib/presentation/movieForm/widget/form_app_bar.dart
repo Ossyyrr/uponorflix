@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uponorflix/domain/model/movie.dart';
+import 'package:uponorflix/l10n/app_localizations.dart';
 
 class FormAppBar extends StatelessWidget {
   const FormAppBar({super.key, required this.movie});
@@ -31,7 +32,10 @@ class FormAppBar extends StatelessWidget {
         child: SafeArea(
           child: Center(
             child: Text(
-              movie == null ? '🎬 Nueva Película' : '✏️ Editar Película',
+              movie == null
+                  ? '🎬 ${AppLocalizations.of(context)!.newMovieTitle}'
+                  : '✏️ ${AppLocalizations.of(context)!.editMovieTitle}',
+
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(

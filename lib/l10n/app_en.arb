@@ -1,4 +1,6 @@
 {
+    "newMovieTitle": "New Movie",
+    "editMovieTitle": "Edit Movie",
     "selectLanguage": "Select language",
     "enableDarkMode": "Enable dark mode",
     "disableDarkMode": "Disable dark mode",
@@ -19,6 +21,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "movieDeleted": "Movie deleted",
+    "serie": "Serie",
+    "movie": "Movie",
     "series": "Series",
     "movies": "Movies",
     "type": "Type",

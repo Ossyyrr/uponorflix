@@ -1,4 +1,6 @@
 {
+    "newMovieTitle": "Nueva Película",
+    "editMovieTitle": "Editar Película",
     "selectLanguage": "Selecciona el idioma",
     "enableDarkMode": "Activar modo oscuro",
     "disableDarkMode": "Desactivar modo oscuro",
@@ -19,6 +21,8 @@
     "edit": "Editar",
     "delete": "Eliminar",
     "movieDeleted": "Película eliminada",
+    "serie": "Serie",
+    "movie": "Película",
     "series": "Series",
     "movies": "Películas",
     "type": "Tipo",

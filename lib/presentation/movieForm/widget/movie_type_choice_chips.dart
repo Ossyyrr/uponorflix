@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uponorflix/domain/enum/movie_type.dart';
+import 'package:uponorflix/l10n/app_localizations.dart';
 
 class MovieTypeChoiceChips extends StatelessWidget {
   final MovieType selectedType;
@@ -18,7 +19,7 @@ class MovieTypeChoiceChips extends StatelessWidget {
       children: [
         ChoiceChip(
           showCheckmark: false,
-          label: const Text('Película'),
+          label: Text(AppLocalizations.of(context)!.movie),
           selected: selectedType == MovieType.movie,
           onSelected: (selected) {
             if (selected) onTypeChanged(MovieType.movie);
@@ -37,7 +38,7 @@ class MovieTypeChoiceChips extends StatelessWidget {
         const SizedBox(width: 8),
         ChoiceChip(
           showCheckmark: false,
-          label: const Text('Serie'),
+          label: Text(AppLocalizations.of(context)!.serie),
           selected: selectedType == MovieType.series,
           onSelected: (selected) {
             if (selected) onTypeChanged(MovieType.series);

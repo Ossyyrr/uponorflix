@@ -98,6 +98,18 @@ abstract class AppLocalizations {
     Locale('es'),
   ];
 
+  /// No description provided for @newMovieTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New Movie'**
+  String get newMovieTitle;
+
+  /// No description provided for @editMovieTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Movie'**
+  String get editMovieTitle;
+
   /// No description provided for @selectLanguage.
   ///
   /// In en, this message translates to:
@@ -217,6 +229,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Movie deleted'**
   String get movieDeleted;
+
+  /// No description provided for @serie.
+  ///
+  /// In en, this message translates to:
+  /// **'Serie'**
+  String get serie;
+
+  /// No description provided for @movie.
+  ///
+  /// In en, this message translates to:
+  /// **'Movie'**
+  String get movie;
 
   /// No description provided for @series.
   ///

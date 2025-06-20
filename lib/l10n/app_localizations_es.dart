@@ -9,6 +9,12 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
+  String get newMovieTitle => 'Nueva Película';
+
+  @override
+  String get editMovieTitle => 'Editar Película';
+
+  @override
   String get selectLanguage => 'Selecciona el idioma';
 
   @override
@@ -67,6 +73,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get movieDeleted => 'Película eliminada';
+
+  @override
+  String get serie => 'Serie';
+
+  @override
+  String get movie => 'Película';
 
   @override
   String get series => 'Series';
