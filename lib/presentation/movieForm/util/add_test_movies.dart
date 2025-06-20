@@ -82,7 +82,7 @@ void addTestMovie(BuildContext context) async {
       type: MovieType.series,
     ),
     Movie(
-      title: 'Marte (The Martian)',
+      title: 'Marte',
       description:
           'Un astronauta queda atrapado en Marte y debe sobrevivir mientras espera ser rescatado.',
       trailerUrl:

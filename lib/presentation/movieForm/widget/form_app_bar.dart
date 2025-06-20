@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:uponorflix/presentation/movieForm/movie_form_screen.dart';
+import 'package:uponorflix/domain/model/movie.dart';
 
 class FormAppBar extends StatelessWidget {
-  const FormAppBar({super.key, required this.widget});
+  const FormAppBar({super.key, required this.movie});
 
-  final MovieFormScreen widget;
+  final Movie? movie;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class FormAppBar extends StatelessWidget {
         child: SafeArea(
           child: Center(
             child: Text(
-              widget.movie == null ? '🎬 Nueva Película' : '✏️ Editar Película',
+              movie == null ? '🎬 Nueva Película' : '✏️ Editar Película',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: colorScheme.onPrimary,
                 fontWeight: FontWeight.w900,
