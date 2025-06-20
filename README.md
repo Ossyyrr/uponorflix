@@ -96,10 +96,10 @@ This project is for technical evaluation purposes only and must not be distribut
 
 - This project follows a decoupled architecture to facilitate maintenance and scalability.
 
-> **ℹ️ This project was developed by Patricia Manzanero Jiménez as a technical test for Uponor between 16/06/25 and 20/06/25.**
-
 ---
 
 ## 📬 Contact
 
 For questions or suggestions: [ossyyrr@gmail.com](mailto:ossyyrr@gmail.com)
+
+> **ℹ️ This project was developed by Patricia Manzanero Jiménez as a technical test for Uponor between 16/06/25 and 20/06/25.**
